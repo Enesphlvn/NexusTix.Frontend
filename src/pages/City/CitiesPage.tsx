@@ -1,29 +1,8 @@
-import { useEffect, useState } from "react";
-import type { City } from "../../models/City/City";
-import { getAllCities } from "../../api/City/cityService";
+import { useCities } from "../../hooks/City/useCities";
+import CityList from "../../components/City/CityList";
 
 const CitiesPage = () => {
-  const [cities, setCities] = useState<City[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchCities = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const data = await getAllCities();
-
-        setCities(data);
-      } catch (err: any) {
-        setError(err.message || "Bir hata oluştu");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCities();
-  }, []);
+  const { cities, loading, error } = useCities();
 
   if (loading) {
     return <div>Yükleniyor...</div>;
@@ -36,13 +15,7 @@ const CitiesPage = () => {
   return (
     <div>
       <h1>Şehirler</h1>
-      <ul>
-        {cities.map((city) => (
-          <li key={city.id}>
-            {city.name} (ID: {city.id})
-          </li>
-        ))}
-      </ul>
+      <CityList cities={cities} />
     </div>
   );
 };
