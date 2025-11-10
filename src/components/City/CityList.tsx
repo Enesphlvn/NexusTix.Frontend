@@ -1,4 +1,5 @@
 import type { City } from "../../models/City/City";
+import styles from "./CityList.module.css";
 
 interface CityListProps {
   cities: City[];
@@ -6,13 +7,16 @@ interface CityListProps {
 
 const CityList = ({ cities }: CityListProps) => {
   return (
-    <ul>
-      {cities.map((city) => (
-        <li key={city.id}>
-          {city.name} (ID: {city.id})
-        </li>
-      ))}
-    </ul>
+    <div className={styles.listContainer}>
+      <h1>Şehirler</h1>
+      <ul className={styles.grid}>
+        {cities.map((city) => (
+          <li key={city.id} className={styles.card}>
+            {city.name}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

@@ -12,12 +12,7 @@ const CitiesPage = () => {
     return <div style={{ color: "red" }}>Hata: {error}</div>;
   }
 
-  return (
-    <div>
-      <h1>Şehirler</h1>
-      <CityList cities={cities} />
-    </div>
-  );
+  return <CityList cities={cities} />;
 };
 
 export default CitiesPage;
