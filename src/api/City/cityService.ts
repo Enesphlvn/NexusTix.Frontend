@@ -27,7 +27,7 @@ export const getCity = async (id: number): Promise<City> => {
       throw new Error(response.data.errorMessages.join(", "));
     }
   } catch (error) {
-    console.error(`Şehir (ID: ${id}) getirilirken hata oluştu:`, error);
+    console.error(`Şehir ID: (${id}) getirilirken hata oluştu:`, error);
     throw error;
   }
 };
