@@ -10,77 +10,39 @@ import api from "../api";
 export const register = async (
   request: CreateUserRequest
 ): Promise<UserResponse> => {
-  try {
-    const response = await api.post<ServiceResult<UserResponse>>(
-      "/auth/register",
-      request
-    );
+  const response = await api.post<ServiceResult<UserResponse>>(
+    "/auth/register",
+    request
+  );
 
-    if (response.data.isSuccess) {
-      return response.data.data;
-    } else {
-      throw new Error(response.data.errorMessages.join(", "));
-    }
-  } catch (error) {
-    console.error("Kayıt işlemi sırasında hata oluştu:", error);
-    throw error;
+  if (!response.data.isSuccess) {
+    throw new Error(response.data.errorMessages.join(", "));
   }
+
+  return response.data.data;
 };
 
 export const login = async (request: LoginRequest): Promise<LoginResponse> => {
-  try {
-    const response = await api.post<ServiceResult<LoginResponse>>(
-      "/auth/login",
-      request
-    );
+  const response = await api.post<ServiceResult<LoginResponse>>(
+    "/auth/login",
+    request
+  );
 
-    if (response.data.isSuccess) {
-      return response.data.data;
-    } else {
-      throw new Error(response.data.errorMessages.join(", "));
-    }
-  } catch (error) {
-    console.error("Giriş işlemi sırasında hata oluştu:", error);
-    throw error;
+  if (!response.data.isSuccess) {
+    throw new Error(response.data.errorMessages.join(", "));
   }
+
+  return response.data.data;
 };
 
 export const updateEmail = async (
   request: UpdateUserEmailRequest
 ): Promise<void> => {
-  try {
-    const response = await api.put<ServiceResult<null>>(
-      "/auth/update-email",
-      request
-    );
-
-    if (response.data.isSuccess) {
-      return;
-    } else {
-      throw new Error(response.data.errorMessages.join(", "));
-    }
-  } catch (error) {
-    console.error("E-posta güncellenirken hata oluştu:", error);
-    throw error;
-  }
+  await api.put<ServiceResult<null>>("/auth/update-email", request);
 };
 
 export const updatePassword = async (
   request: UpdateUserPasswordRequest
 ): Promise<void> => {
-  try {
-    const response = await api.put<ServiceResult<null>>(
-      "/auth/update-password",
-      request
-    );
-
-    if (response.data.isSuccess) {
-      return;
-    } else {
-      throw new Error(response.data.errorMessages.join(", "));
-    }
-  } catch (error) {
-    console.error("Şifre güncellenirken hata oluştu:", error);
-    throw error;
-  }
+  await api.put<ServiceResult<null>>("/auth/update-password", request);
 };
