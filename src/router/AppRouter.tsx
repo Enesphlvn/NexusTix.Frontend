@@ -3,6 +3,7 @@ import CitiesPage from "../pages/City/CitiesPage";
 import CityDetailPage from "../pages/City/CityDetailPage";
 import MainLayout from "../components/Layout/MainLayout";
 import HomePage from "../pages/Home/HomePage";
+import LoginPage from "../pages/Auth/LoginPage";
 
 export const AppRouter = () => {
   return (
@@ -12,7 +13,9 @@ export const AppRouter = () => {
           <Route index element={<HomePage />} />
           <Route path="cities" element={<CitiesPage />} />
           <Route path="cities/:id" element={<CityDetailPage />} />
-        </Route>{" "}
+
+          <Route path="login" element={<LoginPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
