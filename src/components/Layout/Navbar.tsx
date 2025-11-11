@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import styles from "../Layout/Navbar.module.css";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
-  // const isLoggedIn = false;
+  const { isAuthenticated, user, logout } = useAuth();
 
   return (
     <nav className={styles.navbar}>
@@ -24,26 +25,30 @@ const Navbar = () => {
           Etkinlikler
         </Link>
 
-        {/* AuthContext kurulduğunda bu dinamik olacak:
-            {isLoggedIn ? (
-                <>
-                    <Link to="/my-tickets" className={styles.navLink}>Biletlerim</Link>
-                    <button className={styles.buttonSecondary}>Çıkış Yap</button>
-                </>
-            ) : (
-                <>
-                    <Link to="/login" className={styles.buttonSecondary}>Giriş Yap</Link>
-                    <Link to="/register" className={styles.buttonPrimary}>Kayıt Ol</Link>
-                </>
-            )}
-        */}
+        {isAuthenticated ? (
+          <>
+            <span className={styles.navLink}>
+              Hoş geldin, {user?.fullName.split(" ")[0]}
+            </span>
 
-        <Link to="/login" className={styles.buttonSecondary}>
-          Giriş Yap
-        </Link>
-        <Link to="/register" className={styles.buttonPrimary}>
-          Kayıt Ol
-        </Link>
+            <Link to="/my-tickets" className={styles.navLink}>
+              Biletlerim
+            </Link>
+
+            <button onClick={logout} className={styles.buttonSecondary}>
+              Çıkış Yap
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className={styles.buttonSecondary}>
+              Giriş Yap
+            </Link>
+            <Link to="/register" className={styles.buttonPrimary}>
+              Kayıt Ol
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );
