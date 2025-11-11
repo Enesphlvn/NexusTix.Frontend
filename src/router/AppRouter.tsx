@@ -4,6 +4,7 @@ import CityDetailPage from "../pages/City/CityDetailPage";
 import MainLayout from "../components/Layout/MainLayout";
 import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/Auth/LoginPage";
+import RegisterPage from "../pages/Auth/RegisterPage";
 
 export const AppRouter = () => {
   return (
@@ -15,6 +16,7 @@ export const AppRouter = () => {
           <Route path="cities/:id" element={<CityDetailPage />} />
 
           <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
