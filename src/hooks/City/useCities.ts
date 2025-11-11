@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { City } from "../../models/City/City";
+import type { City } from "../../models/City/Responses/City";
 import { getAllCities } from "../../api/City/cityService";
 
 export const useCities = () => {

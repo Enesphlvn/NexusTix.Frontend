@@ -1,4 +1,4 @@
-import type { City } from "../../models/City/City";
+import type { City } from "../../models/City/Responses/City";
 import type { ServiceResult } from "../../models/ServiceResult";
 import api from "../api";
 

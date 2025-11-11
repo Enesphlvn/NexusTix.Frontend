@@ -1,4 +1,4 @@
-import type { City } from "../../models/City/City";
+import type { City } from "../../models/City/Responses/City";
 import styles from "./CityDetail.module.css";
 
 interface CityDetailProps {
