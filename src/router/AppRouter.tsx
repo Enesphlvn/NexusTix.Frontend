@@ -7,6 +7,7 @@ import LoginPage from "../pages/Auth/LoginPage";
 import RegisterPage from "../pages/Auth/RegisterPage";
 import EventDetailPage from "../pages/Event/EventDetailPage";
 import NotFoundPage from "../pages/NotFound/NotFoundPage";
+import MyTicketsPage from "../pages/Ticket/MyTicketsPage";
 
 export const AppRouter = () => {
   return (
@@ -22,6 +23,8 @@ export const AppRouter = () => {
 
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
+
+          <Route path="my-tickets" element={<MyTicketsPage />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Route>
