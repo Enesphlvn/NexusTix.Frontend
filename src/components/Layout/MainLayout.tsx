@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import styles from "../Layout/MainLayout.module.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { ToastContainer } from "react-toastify";
 
 const MainLayout = () => {
   return (
@@ -13,6 +14,19 @@ const MainLayout = () => {
       </main>
 
       <Footer />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };
