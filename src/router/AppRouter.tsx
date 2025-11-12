@@ -6,7 +6,7 @@ import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/Auth/LoginPage";
 import RegisterPage from "../pages/Auth/RegisterPage";
 import EventDetailPage from "../pages/Event/EventDetailPage";
-import NotFoundPage from "../pages/NotFoundPage";
+import NotFoundPage from "../pages/NotFound/NotFoundPage";
 
 export const AppRouter = () => {
   return (
