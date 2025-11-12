@@ -4,14 +4,14 @@ import EventCard from "../../components/Event/EventCard";
 import { useCities } from "../../hooks/City/useCities";
 import { useEvents } from "../../hooks/Event/useEvents";
 import { useEventTypes } from "../../hooks/EventType/useEventTypes";
-import styles from "../Home/HomePage.module.css";
-import type { EventFilters } from "../../models/Event/Responses/EventFilters";
+import styles from "./HomePage.module.css";
+import type { EventFiltersResponse } from "../../models/Event/Responses/EventFiltersResponse";
 import { useSearchParams } from "react-router-dom";
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const activeFilters: EventFilters = useMemo(() => {
+  const activeFilters: EventFiltersResponse = useMemo(() => {
     return {
       cityId: searchParams.get("city")
         ? Number(searchParams.get("city"))
@@ -23,7 +23,7 @@ const HomePage = () => {
     };
   }, [searchParams]);
 
-  const [draftFilters, setDraftFilters] = useState<EventFilters>(activeFilters);
+  const [draftFilters, setDraftFilters] = useState<EventFiltersResponse>(activeFilters);
 
   useEffect(() => {
     setDraftFilters(activeFilters);

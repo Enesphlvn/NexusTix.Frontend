@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import type { Event } from "../../models/Event/Responses/Event";
-import styles from "../Event/EventCard.module.css";
+import type { EventResponse } from "../../models/Event/Responses/EventResponse";
+import styles from "./EventCard.module.css";
 
 interface EventCardProps {
-  event: Event;
+  event: EventResponse;
 }
 
 const EventCard = ({ event }: EventCardProps) => {

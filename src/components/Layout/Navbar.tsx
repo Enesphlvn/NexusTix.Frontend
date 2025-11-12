@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "../Layout/Navbar.module.css";
+import styles from "./Navbar.module.css";
 import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
@@ -13,9 +13,7 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className={styles.searchBar}>
-        {/* <input type="text" placeholder="Etkinlik ara..." /> */}
-      </div>
+      <div className={styles.searchBar}></div>
 
       <div className={styles.navLinks}>
         <Link to="/cities" className={styles.navLink}>

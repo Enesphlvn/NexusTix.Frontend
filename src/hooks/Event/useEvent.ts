@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import type { EventAggregate } from "../../models/Event/Responses/EventAggregate";
+import type { EventAggregateResponse } from "../../models/Event/Responses/EventAggregateResponse";
 import { getEvent } from "../../api/Event/eventService";
 
 export const useEvent = (id: string | undefined) => {
-  const [event, setEvent] = useState<EventAggregate | null>(null);
+  const [event, setEvent] = useState<EventAggregateResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 

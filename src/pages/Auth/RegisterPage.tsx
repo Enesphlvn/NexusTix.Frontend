@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from "../../api/Auth/authService";
-import styles from "../Auth/RegisterPage.module.css";
+import styles from "./RegisterPage.module.css";
 import type { CreateUserRequest } from "../../models/Auth/Requests/CreateUserRequest";
 
 const RegisterPage = () => {

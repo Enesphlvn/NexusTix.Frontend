@@ -1,11 +1,11 @@
 import type React from "react";
-import type { City } from "../../models/City/Responses/City";
-import type { EventType } from "../../models/EventType/Responses/EventType";
-import styles from "../Common/FilterBar.module.css";
+import type { CityResponse } from "../../models/City/Responses/CityResponse";
+import type { EventTypeResponse } from "../../models/EventType/Responses/EventTypeResponse";
+import styles from "./FilterBar.module.css";
 
 interface FilterBarProps {
-  cities: City[];
-  eventTypes: EventType[];
+  cities: CityResponse[];
+  eventTypes: EventTypeResponse[];
 
   selectedCityId: string;
   selectedEventTypeId: string;

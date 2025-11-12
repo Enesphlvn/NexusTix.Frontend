@@ -1,8 +1,8 @@
-import type { EventAggregate } from "../../models/Event/Responses/EventAggregate";
-import styles from "../Event/EventDetail.module.css";
+import type { EventAggregateResponse } from "../../models/Event/Responses/EventAggregateResponse";
+import styles from "./EventDetail.module.css";
 
 interface EventDetailProps {
-  event: EventAggregate;
+  event: EventAggregateResponse;
   onBuyClick: () => void;
   soldCount: number | null;
   isSoldOut: boolean | null;

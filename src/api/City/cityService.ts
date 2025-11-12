@@ -1,9 +1,9 @@
-import type { City } from "../../models/City/Responses/City";
+import type { CityResponse } from "../../models/City/Responses/CityResponse";
 import type { ServiceResult } from "../../models/ServiceResult";
 import api from "../api";
 
-export const getAllCities = async (): Promise<City[]> => {
-  const response = await api.get<ServiceResult<City[]>>("/cities");
+export const getAllCities = async (): Promise<CityResponse[]> => {
+  const response = await api.get<ServiceResult<CityResponse[]>>("/cities");
 
   if (!response.data.isSuccess) {
     throw new Error(response.data.errorMessages.join(", "));
@@ -12,8 +12,8 @@ export const getAllCities = async (): Promise<City[]> => {
   return response.data.data;
 };
 
-export const getCity = async (id: number): Promise<City> => {
-  const response = await api.get<ServiceResult<City>>(`/cities/${id}`);
+export const getCity = async (id: number): Promise<CityResponse> => {
+  const response = await api.get<ServiceResult<CityResponse>>(`/cities/${id}`);
 
   if (!response.data.isSuccess) {
     throw new Error(response.data.errorMessages.join(", "));

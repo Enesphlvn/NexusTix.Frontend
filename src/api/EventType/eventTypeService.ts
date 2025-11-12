@@ -1,9 +1,9 @@
-import type { EventType } from "../../models/EventType/Responses/EventType";
+import type { EventTypeResponse } from "../../models/EventType/Responses/EventTypeResponse";
 import type { ServiceResult } from "../../models/ServiceResult";
 import api from "../api";
 
-export const getAllEventTypes = async (): Promise<EventType[]> => {
-  const response = await api.get<ServiceResult<EventType[]>>("/eventtypes");
+export const getAllEventTypes = async (): Promise<EventTypeResponse[]> => {
+  const response = await api.get<ServiceResult<EventTypeResponse[]>>("/eventtypes");
 
   if (!response.data.isSuccess) {
     throw new Error(response.data.errorMessages.join(", "));

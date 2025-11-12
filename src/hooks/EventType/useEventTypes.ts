@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import type { EventType } from "../../models/EventType/Responses/EventType";
+import type { EventTypeResponse } from "../../models/EventType/Responses/EventTypeResponse";
 import { getAllEventTypes } from "../../api/EventType/eventTypeService";
 
 export const useEventTypes = () => {
-  const [eventTypes, setEventTypes] = useState<EventType[]>([]);
+  const [eventTypes, setEventTypes] = useState<EventTypeResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 

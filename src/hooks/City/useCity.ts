@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import type { City } from "../../models/City/Responses/City";
+import type { CityResponse } from "../../models/City/Responses/CityResponse";
 import { getCity } from "../../api/City/cityService";
 
 export const useCity = (id: number | undefined) => {
-  const [city, setCity] = useState<City | null>(null);
+  const [city, setCity] = useState<CityResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 

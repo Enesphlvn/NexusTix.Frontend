@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import styles from "../Layout/MainLayout.module.css";
+import styles from "./MainLayout.module.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { ToastContainer } from "react-toastify";

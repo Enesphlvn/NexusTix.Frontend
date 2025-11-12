@@ -2,7 +2,7 @@ import { useState, type FormEvent } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import type { LoginRequest } from "../../models/Auth/Requests/LoginRequest";
-import styles from "../Auth/LoginPage.module.css";
+import styles from "./LoginPage.module.css";
 
 const LoginPage = () => {
   const { login } = useAuth();

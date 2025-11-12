@@ -1,4 +1,4 @@
-export interface Venue {
+export interface VenueResponse {
   id: number;
   name: string;
   capacity: number;

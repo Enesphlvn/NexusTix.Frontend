@@ -1,8 +1,8 @@
-import type { City } from "../../models/City/Responses/City";
+import type { CityResponse } from "../../models/City/Responses/CityResponse";
 import styles from "./CityList.module.css";
 
 interface CityListProps {
-  cities: City[];
+  cities: CityResponse[];
 }
 
 const CityList = ({ cities }: CityListProps) => {

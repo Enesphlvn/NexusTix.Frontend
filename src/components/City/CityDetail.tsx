@@ -1,8 +1,8 @@
-import type { City } from "../../models/City/Responses/City";
+import type { CityResponse } from "../../models/City/Responses/CityResponse";
 import styles from "./CityDetail.module.css";
 
 interface CityDetailProps {
-  city: City;
+  city: CityResponse;
 }
 
 const CityDetail = ({ city }: CityDetailProps) => {

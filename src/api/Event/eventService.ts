@@ -1,11 +1,11 @@
-import type { Event } from "../../models/Event/Responses/Event";
-import type { EventAggregate } from "../../models/Event/Responses/EventAggregate";
-import type { EventFilters } from "../../models/Event/Responses/EventFilters";
+import type { EventResponse } from "../../models/Event/Responses/EventResponse";
+import type { EventAggregateResponse } from "../../models/Event/Responses/EventAggregateResponse";
+import type { EventFiltersResponse } from "../../models/Event/Responses/EventFiltersResponse";
 import type { ServiceResult } from "../../models/ServiceResult";
 import api from "../api";
 
-export const getAllEvents = async (): Promise<Event[]> => {
-  const response = await api.get<ServiceResult<Event[]>>("/events");
+export const getAllEvents = async (): Promise<EventResponse[]> => {
+  const response = await api.get<ServiceResult<EventResponse[]>>("/events");
 
   if (!response.data.isSuccess) {
     throw new Error(response.data.errorMessages.join(", "));
@@ -15,9 +15,9 @@ export const getAllEvents = async (): Promise<Event[]> => {
 };
 
 export const getFilteredEvents = async (
-  filters: EventFilters
-): Promise<Event[]> => {
-  const response = await api.get<ServiceResult<Event[]>>("/events/filter", {
+  filters: EventFiltersResponse
+): Promise<EventResponse[]> => {
+  const response = await api.get<ServiceResult<EventResponse[]>>("/events/filter", {
     params: filters,
   });
 
@@ -28,8 +28,8 @@ export const getFilteredEvents = async (
   return response.data.data;
 };
 
-export const getEvent = async (id: number): Promise<EventAggregate> => {
-  const response = await api.get<ServiceResult<EventAggregate>>(
+export const getEvent = async (id: number): Promise<EventAggregateResponse> => {
+  const response = await api.get<ServiceResult<EventAggregateResponse>>(
     `/events/${id}/aggregate`
   );
 
