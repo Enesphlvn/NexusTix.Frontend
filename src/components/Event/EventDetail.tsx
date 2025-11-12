@@ -4,9 +4,16 @@ import styles from "../Event/EventDetail.module.css";
 interface EventDetailProps {
   event: EventAggregate;
   onBuyClick: () => void;
+  soldCount: number | null;
+  isSoldOut: boolean | null;
 }
 
-const EventDetail = ({ event, onBuyClick }: EventDetailProps) => {
+const EventDetail = ({
+  event,
+  onBuyClick,
+  soldCount,
+  isSoldOut,
+}: EventDetailProps) => {
   const formattedDate = new Date(event.date).toLocaleDateString("tr-TR", {
     weekday: "long",
     year: "numeric",
@@ -15,6 +22,8 @@ const EventDetail = ({ event, onBuyClick }: EventDetailProps) => {
     hour: "2-digit",
     minute: "2-digit",
   });
+
+  const remainingTickets = event.capacity - (soldCount ?? 0);
 
   return (
     <div className={styles.container}>
@@ -43,8 +52,25 @@ const EventDetail = ({ event, onBuyClick }: EventDetailProps) => {
           </div>
 
           <div className={styles.infoItem}>
-            <span className={styles.label}>Kapasite</span>
-            <span className={styles.value}>{event.capacity} Kişilik</span>
+            <span className={styles.label}>Kapasite Durumu</span>
+            <span className={styles.value}>
+              {soldCount !== null ? (
+                <>
+                  {soldCount} / {event.capacity} Satıldı
+                  <br />
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      color: remainingTickets < 10 ? "red" : "green",
+                    }}
+                  >
+                    ({remainingTickets} bilet kaldı)
+                  </span>
+                </>
+              ) : (
+                "Yükleniyor..."
+              )}
+            </span>
           </div>
 
           <div className={styles.infoItem}>
@@ -52,8 +78,12 @@ const EventDetail = ({ event, onBuyClick }: EventDetailProps) => {
             <span className={styles.price}>{event.price} TL</span>
           </div>
 
-          <button onClick={onBuyClick} className={styles.buyButton}>
-            Bilet Satın Al
+          <button
+            onClick={onBuyClick}
+            disabled={isSoldOut || false}
+            className={isSoldOut ? styles.soldOutButton : styles.buyButton}
+          >
+            {isSoldOut ? "TÜKENDİ" : "Bilet Satın Al"}
           </button>
         </div>
       </div>
