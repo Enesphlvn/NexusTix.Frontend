@@ -1,5 +1,6 @@
 import type { ServiceResult } from "../../models/ServiceResult";
 import type { CreateTicketRequest } from "../../models/Ticket/Requests/CreateTicketRequest";
+import type { TicketByUserResponse } from "../../models/Ticket/Responses/TicketByUserResponse";
 import type { TicketResponse } from "../../models/Ticket/Responses/TicketResponse";
 import api from "../api";
 
@@ -32,8 +33,8 @@ export const createTicket = async (
   return response.data.data;
 };
 
-export const getMyTickets = async (): Promise<TicketResponse[]> => {
-  const response = await api.get<ServiceResult<TicketResponse[]>>(
+export const getMyTickets = async (): Promise<TicketByUserResponse[]> => {
+  const response = await api.get<ServiceResult<TicketByUserResponse[]>>(
     "/tickets/me"
   );
 

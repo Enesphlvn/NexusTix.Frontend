@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import type { TicketResponse } from "../../models/Ticket/Responses/TicketResponse";
 import { getMyTickets } from "../../api/Ticket/ticketService";
+import type { TicketByUserResponse } from "../../models/Ticket/Responses/TicketByUserResponse";
 
 export const useMyTickets = () => {
-  const [tickets, setTickets] = useState<TicketResponse[]>([]);
+  const [tickets, setTickets] = useState<TicketByUserResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
