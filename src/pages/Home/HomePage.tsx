@@ -5,7 +5,7 @@ import { useCities } from "../../hooks/City/useCities";
 import { useEvents } from "../../hooks/Event/useEvents";
 import { useEventTypes } from "../../hooks/EventType/useEventTypes";
 import styles from "../Home/HomePage.module.css";
-import type { EventFilters } from "../../models/Event/EventFilters";
+import type { EventFilters } from "../../models/Event/Responses/EventFilters";
 import { useSearchParams } from "react-router-dom";
 
 const HomePage = () => {

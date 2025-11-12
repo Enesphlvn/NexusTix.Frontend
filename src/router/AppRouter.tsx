@@ -5,6 +5,7 @@ import MainLayout from "../components/Layout/MainLayout";
 import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/Auth/LoginPage";
 import RegisterPage from "../pages/Auth/RegisterPage";
+import EventDetailPage from "../pages/Event/EventDetailPage";
 
 export const AppRouter = () => {
   return (
@@ -12,6 +13,9 @@ export const AppRouter = () => {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
+
+          <Route path="events/:id" element={<EventDetailPage />} />
+
           <Route path="cities" element={<CitiesPage />} />
           <Route path="cities/:id" element={<CityDetailPage />} />
 

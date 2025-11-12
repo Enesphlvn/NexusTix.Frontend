@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { Event } from "../../models/Event/Event";
+import type { Event } from "../../models/Event/Responses/Event";
 import { getAllEvents, getFilteredEvents } from "../../api/Event/eventService";
-import type { EventFilters } from "../../models/Event/EventFilters";
+import type { EventFilters } from "../../models/Event/Responses/EventFilters";
 
 export const useEvents = (filters: EventFilters) => {
   const [events, setEvents] = useState<Event[]>([]);
