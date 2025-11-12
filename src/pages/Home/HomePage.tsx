@@ -1,30 +1,110 @@
+import { useEffect, useMemo, useState } from "react";
+import FilterBar from "../../components/Common/FilterBar";
 import EventCard from "../../components/Event/EventCard";
+import { useCities } from "../../hooks/City/useCities";
 import { useEvents } from "../../hooks/Event/useEvents";
+import { useEventTypes } from "../../hooks/EventType/useEventTypes";
 import styles from "../Home/HomePage.module.css";
+import type { EventFilters } from "../../models/Event/EventFilters";
+import { useSearchParams } from "react-router-dom";
 
 const HomePage = () => {
-  const { events, loading, error } = useEvents();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  if (loading) {
-    return <div>Etkinlikler Yükleniyor...</div>;
-  }
+  const activeFilters: EventFilters = useMemo(() => {
+    return {
+      cityId: searchParams.get("city")
+        ? Number(searchParams.get("city"))
+        : undefined,
+      eventTypeId: searchParams.get("type")
+        ? Number(searchParams.get("type"))
+        : undefined,
+      date: searchParams.get("date") || undefined,
+    };
+  }, [searchParams]);
 
-  if (error) {
-    return <div style={{ color: "red" }}>Hata: {error}</div>;
-  }
+  const [draftFilters, setDraftFilters] = useState<EventFilters>(activeFilters);
+
+  useEffect(() => {
+    setDraftFilters(activeFilters);
+  }, [activeFilters]);
+
+  const {
+    events,
+    loading: eventsLoading,
+    error: eventsError,
+  } = useEvents(activeFilters);
+
+  const { cities, loading: citiesLoading } = useCities();
+  const { eventTypes, loading: eventTypesLoading } = useEventTypes();
+
+  const isLoading = eventsLoading || citiesLoading || eventTypesLoading;
+
+  const handleCityChange = (id: string) => {
+    setDraftFilters((prev) => ({
+      ...prev,
+      cityId: id ? Number(id) : undefined,
+    }));
+  };
+
+  const handleEventTypeChange = (id: string) => {
+    setDraftFilters((prev) => ({
+      ...prev,
+      eventTypeId: id ? Number(id) : undefined,
+    }));
+  };
+
+  const handleDateChange = (date: string) => {
+    setDraftFilters((prev) => ({ ...prev, date: date || undefined }));
+  };
+
+  const handleSearch = () => {
+    const params: any = {};
+
+    if (draftFilters.cityId) params.city = draftFilters.cityId.toString();
+    if (draftFilters.eventTypeId)
+      params.type = draftFilters.eventTypeId.toString();
+    if (draftFilters.date) params.date = draftFilters.date;
+
+    setSearchParams(params);
+  };
+
+  if (isLoading) return <div>Etkinlikler Yükleniyor...</div>;
+  if (eventsError)
+    return <div style={{ color: "red" }}>Hata: {eventsError}</div>;
 
   return (
     <div className={styles.pageContainer}>
-      <h1 className={styles.header}>Yaklaşan Etkinlikler</h1>
-      {/* İleride buraya Filtreleme Çubuğu (FilterBar) bileşeni gelecek.
-        Bu filtre çubuğu, 'useCities' ve 'useEventTypes' hook'larını kullanacak.
-      */}
+      <FilterBar
+        cities={cities}
+        eventTypes={eventTypes}
+        selectedCityId={draftFilters.cityId?.toString() || ""}
+        selectedEventTypeId={draftFilters.eventTypeId?.toString() || ""}
+        selectedDate={draftFilters.date || ""}
+        onCityChange={handleCityChange}
+        onEventTypeChange={handleEventTypeChange}
+        onDateChange={handleDateChange}
+        onSearch={handleSearch}
+      />
 
-      {/* <div className={styles.eventGrid}> */}
+      <h1 className={styles.header}>
+        {activeFilters.cityId || activeFilters.eventTypeId || activeFilters.date
+          ? "Arama Sonuçları"
+          : "Yaklaşan Etkinlikler"}
+      </h1>
+
       <div className={styles.eventGrid}>
-        {events.map((event) => (
-          <EventCard key={event.id} event={event} />
-        ))}
+        {events.length > 0 ? (
+          events.map((event) => <EventCard key={event.id} event={event} />)
+        ) : (
+          <div className={styles.noEvents}>
+            <div className={styles.noEventsTitle}>Sonuç Bulunamadı 😔</div>
+            <div className={styles.noEventsText}>
+              Seçtiğiniz filtrelere uygun bir etkinlik bulamadık. Lütfen farklı
+              bir şehir veya tarih seçmeyi deneyin.
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

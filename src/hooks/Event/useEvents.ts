@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import type { Event } from "../../models/Event/Event";
-import { getAllEvents } from "../../api/Event/eventService";
+import { getAllEvents, getFilteredEvents } from "../../api/Event/eventService";
+import type { EventFilters } from "../../models/Event/EventFilters";
 
-export const useEvents = () => {
+export const useEvents = (filters: EventFilters) => {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -12,7 +13,9 @@ export const useEvents = () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await getAllEvents();
+
+        const data = await getFilteredEvents(filters);
+
         setEvents(data);
       } catch (err: any) {
         setError(err.message || "Etkinlikler yüklenirken bir hata oluştu");
@@ -21,7 +24,7 @@ export const useEvents = () => {
       }
     };
     fetchEvents();
-  }, []);
+  }, [filters.cityId, filters.eventTypeId, filters.date]);
 
   return { events, loading, error };
 };
