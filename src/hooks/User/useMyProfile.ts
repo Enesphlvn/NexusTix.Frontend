@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { UserResponse } from "../../models/User/Responses/UserResponse";
 import { getMyProfile } from "../../api/User/userService";
 
@@ -7,21 +7,23 @@ export const useMyProfile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        setLoading(true);
-        const data = await getMyProfile();
-        setUser(data);
-      } catch (err: any) {
-        setError(err.message || "Profil bilgileri yüklenemedi.");
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchProfile = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-    fetchProfile();
+      const data = await getMyProfile();
+      setUser(data);
+    } catch (err: any) {
+      setError(err.message || "Profil bilgileri yüklenemedi.");
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  return { user, loading, error };
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
+
+  return { user, loading, error, refetch: fetchProfile };
 };

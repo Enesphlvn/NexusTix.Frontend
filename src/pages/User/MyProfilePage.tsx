@@ -1,15 +1,20 @@
 import ChangeEmailForm from "../../components/User/ChangeEmailForm";
 import ChangePasswordForm from "../../components/User/ChangePasswordForm";
+import UpdateProfileForm from "../../components/User/UpdateProfileForm";
 import UserProfileInfo from "../../components/User/UserProfileInfo";
 import { useMyProfile } from "../../hooks/User/useMyProfile";
-import styles from './MyProfilePage.module.css';
+import styles from "./MyProfilePage.module.css";
 
 const MyProfilePage = () => {
-  const { user, loading, error } = useMyProfile();
+  const { user, loading, error, refetch } = useMyProfile();
 
   if (loading) return <div>Yükleniyor...</div>;
   if (error) return <div style={{ color: "red" }}>Hata: {error}</div>;
   if (!user) return <div>Kullanıcı bulunamadı.</div>;
+
+  const handleProfileUpdateSuccess = () => {
+    refetch();
+  };
 
   return (
     <div className={styles.container}>
@@ -17,8 +22,12 @@ const MyProfilePage = () => {
 
       <UserProfileInfo user={user} />
 
-      <ChangeEmailForm userId={user.id} currentEmail={user.email} />
+      <UpdateProfileForm
+        user={user}
+        onUpdateSuccess={handleProfileUpdateSuccess}
+      />
 
+      <ChangeEmailForm userId={user.id} currentEmail={user.email} />
       <ChangePasswordForm userId={user.id} />
     </div>
   );

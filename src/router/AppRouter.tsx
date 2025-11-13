@@ -9,6 +9,7 @@ import EventDetailPage from "../pages/Event/EventDetailPage";
 import NotFoundPage from "../pages/NotFound/NotFoundPage";
 import MyTicketsPage from "../pages/Ticket/MyTicketsPage";
 import MyProfilePage from "../pages/User/MyProfilePage";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const AppRouter = () => {
   return (
@@ -16,17 +17,16 @@ export const AppRouter = () => {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
-
           <Route path="events/:id" element={<EventDetailPage />} />
-
           <Route path="cities" element={<CitiesPage />} />
           <Route path="cities/:id" element={<CityDetailPage />} />
-
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
 
-          <Route path="my-tickets" element={<MyTicketsPage />} />
-          <Route path="profile" element={<MyProfilePage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="my-tickets" element={<MyTicketsPage />} />
+            <Route path="profile" element={<MyProfilePage />} />
+          </Route>
 
           <Route path="*" element={<NotFoundPage />} />
         </Route>

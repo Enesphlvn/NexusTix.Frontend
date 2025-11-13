@@ -20,6 +20,10 @@ const UserProfileInfo = ({ user }: UserProfileInfoProps) => {
           <label>E-posta</label>
           <p>{user.email}</p>
         </div>
+        <div className={styles.infoItem}>
+          <label>Telefon</label>
+          <p>{user.phoneNumber}</p>
+        </div>
       </div>
     </div>
   );
