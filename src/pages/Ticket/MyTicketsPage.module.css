@@ -1,0 +1,28 @@
+.pageContainer {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  font-size: 2rem;
+  color: #222;
+}
+
+.ticketList {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem;
+  color: #6c757d;
+  font-size: 1.2rem;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+}
