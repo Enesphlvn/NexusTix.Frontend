@@ -26,7 +26,12 @@ const Navbar = () => {
         {isAuthenticated ? (
           <>
             <span className={styles.navLink}>
-              Hoş geldin, {user?.fullName.split(" ")[0]}
+              <Link
+                to="/profile"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                Hoş geldin, {user?.fullName.split(" ")[0]}
+              </Link>
             </span>
 
             <Link to="/my-tickets" className={styles.navLink}>

@@ -1,0 +1,42 @@
+.section {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f0f0f0;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 1.5rem;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoItem label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #8898aa;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.infoItem p {
+  font-size: 1.1rem;
+  color: #32325d;
+  font-weight: 500;
+  margin: 0;
+}

@@ -8,6 +8,7 @@ import RegisterPage from "../pages/Auth/RegisterPage";
 import EventDetailPage from "../pages/Event/EventDetailPage";
 import NotFoundPage from "../pages/NotFound/NotFoundPage";
 import MyTicketsPage from "../pages/Ticket/MyTicketsPage";
+import MyProfilePage from "../pages/User/MyProfilePage";
 
 export const AppRouter = () => {
   return (
@@ -25,6 +26,7 @@ export const AppRouter = () => {
           <Route path="register" element={<RegisterPage />} />
 
           <Route path="my-tickets" element={<MyTicketsPage />} />
+          <Route path="profile" element={<MyProfilePage />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Route>
