@@ -5,4 +5,5 @@ export interface TicketResponse {
   qrCodeGuid: string;
   purchaseDate: string;
   isUsed: boolean;
+  isCancelled: boolean;
 }

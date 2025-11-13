@@ -8,4 +8,5 @@ export interface TicketByUserResponse {
   eventDate: string;
   venueName: string;
   cityName: string;
+  isCancelled: boolean;
 }

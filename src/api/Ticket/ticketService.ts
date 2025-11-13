@@ -44,3 +44,20 @@ export const getMyTickets = async (): Promise<TicketByUserResponse[]> => {
 
   return response.data.data;
 };
+
+export const cancelTicket = async (ticketId: number): Promise<void> => {
+  const response = await api.put<ServiceResult<null>>(
+    `/tickets/${ticketId}/cancel`,
+    {}
+  );
+
+  if (response.status === 204) {
+    return;
+  }
+
+  if (response.data && !response.data.isSuccess) {
+    const errorMessage =
+      response.data.errorMessages?.join(", ") || "İptal işlemi başarısız.";
+    throw new Error(errorMessage);
+  }
+};

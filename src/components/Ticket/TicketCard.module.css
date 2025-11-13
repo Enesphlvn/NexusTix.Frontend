@@ -62,11 +62,49 @@
 
 .qrSection {
   background-color: #f8f9fa;
-  padding: 1.5rem;
+  width: 160px;
+  min-height: 180px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-left: 1px dashed #ccc;
+  flex-shrink: 0;
+}
+
+.active {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.used {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.cancelled {
+  background-color: #ffebee;
+  color: #c62828;
+  text-decoration: line-through;
+}
+
+.cancelButton {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.cancelButton:hover {
+  background-color: #dc3545;
+  color: #fff;
 }
 
 @media (max-width: 600px) {

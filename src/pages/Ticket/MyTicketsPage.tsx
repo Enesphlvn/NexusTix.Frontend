@@ -4,7 +4,7 @@ import styles from "./MyTicketsPage.module.css";
 import LoadingSpinner from "../../components/Common/LoadingSpinner";
 
 const MyTicketsPage = () => {
-  const { tickets, loading, error } = useMyTickets();
+  const { tickets, loading, error, refetch } = useMyTickets();
 
   if (loading) return <LoadingSpinner />;
   if (error) return <div style={{ color: "red" }}>Hata: {error}</div>;
@@ -20,7 +20,7 @@ const MyTicketsPage = () => {
       ) : (
         <div className={styles.ticketList}>
           {tickets.map((ticket) => (
-            <TicketCard key={ticket.id} ticket={ticket} />
+            <TicketCard key={ticket.id} ticket={ticket} onRefresh={refetch} />
           ))}
         </div>
       )}
