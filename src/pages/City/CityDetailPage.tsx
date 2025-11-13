@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useCity } from "../../hooks/City/useCity";
 import CityDetail from "../../components/City/CityDetail";
+import LoadingSpinner from "../../components/Common/LoadingSpinner";
 
 const CityDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -8,7 +9,7 @@ const CityDetailPage = () => {
   const { city, loading, error } = useCity(Number(id));
 
   if (loading) {
-    return <div>Yükleniyor...</div>;
+    return <LoadingSpinner />;
   }
 
   if (error) {

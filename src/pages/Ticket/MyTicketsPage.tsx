@@ -1,11 +1,12 @@
 import { useMyTickets } from "../../hooks/Ticket/useMyTickets";
 import TicketCard from "../../components/Ticket/TicketCard";
 import styles from "./MyTicketsPage.module.css";
+import LoadingSpinner from "../../components/Common/LoadingSpinner";
 
 const MyTicketsPage = () => {
   const { tickets, loading, error } = useMyTickets();
 
-  if (loading) return <div>Biletleriniz yükleniyor...</div>;
+  if (loading) return <LoadingSpinner />;
   if (error) return <div style={{ color: "red" }}>Hata: {error}</div>;
 
   return (

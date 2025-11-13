@@ -7,6 +7,7 @@ import { useEventTypes } from "../../hooks/EventType/useEventTypes";
 import styles from "./HomePage.module.css";
 import type { EventFiltersResponse } from "../../models/Event/Responses/EventFiltersResponse";
 import { useSearchParams } from "react-router-dom";
+import LoadingSpinner from "../../components/Common/LoadingSpinner";
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,7 +24,8 @@ const HomePage = () => {
     };
   }, [searchParams]);
 
-  const [draftFilters, setDraftFilters] = useState<EventFiltersResponse>(activeFilters);
+  const [draftFilters, setDraftFilters] =
+    useState<EventFiltersResponse>(activeFilters);
 
   useEffect(() => {
     setDraftFilters(activeFilters);
@@ -69,7 +71,7 @@ const HomePage = () => {
     setSearchParams(params);
   };
 
-  if (isLoading) return <div>Etkinlikler Yükleniyor...</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (eventsError)
     return <div style={{ color: "red" }}>Hata: {eventsError}</div>;
 

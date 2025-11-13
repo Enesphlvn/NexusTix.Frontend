@@ -1,3 +1,4 @@
+import LoadingSpinner from "../../components/Common/LoadingSpinner";
 import ChangeEmailForm from "../../components/User/ChangeEmailForm";
 import ChangePasswordForm from "../../components/User/ChangePasswordForm";
 import UpdateProfileForm from "../../components/User/UpdateProfileForm";
@@ -8,7 +9,7 @@ import styles from "./MyProfilePage.module.css";
 const MyProfilePage = () => {
   const { user, loading, error, refetch } = useMyProfile();
 
-  if (loading) return <div>Yükleniyor...</div>;
+  if (loading) return <LoadingSpinner />;
   if (error) return <div style={{ color: "red" }}>Hata: {error}</div>;
   if (!user) return <div>Kullanıcı bulunamadı.</div>;
 

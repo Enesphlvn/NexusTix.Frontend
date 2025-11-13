@@ -7,6 +7,7 @@ import { useTicketCount } from "../../hooks/Ticket/useTicketCount";
 import type { CreateTicketRequest } from "../../models/Ticket/Requests/CreateTicketRequest";
 import { createTicket } from "../../api/Ticket/ticketService";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../components/Common/LoadingSpinner";
 
 const EventDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -101,7 +102,7 @@ const EventDetailPage = () => {
     }
   };
 
-  if (isLoading) return <div>Yükleniyor...</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <div style={{ color: "red" }}>Hata: {error}</div>;
   if (!event) return <div>Etkinlik bulunamadı.</div>;
 
