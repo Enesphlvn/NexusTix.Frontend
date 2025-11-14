@@ -11,6 +11,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import AdminLayout from "../components/Layout/Admin/AdminLayout";
 import DashboardPage from "../pages/Admin/DashboardPage";
 import AdminRoute from "./AdminRoute";
+import AdminEventsPage from "../pages/Admin/Events/AdminEventsPage";
 
 export const AppRouter = () => {
   return (
@@ -34,6 +35,7 @@ export const AppRouter = () => {
           <Route element={<AdminLayout />}>
             <Route index element={<DashboardPage />} />
             <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="events" element={<AdminEventsPage />} />
           </Route>
         </Route>
       </Routes>
