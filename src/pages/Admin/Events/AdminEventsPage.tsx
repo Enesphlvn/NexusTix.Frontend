@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAdminEvents } from "../../../hooks/Event/useAdminEvents";
 import { useDeleteEvent } from "../../../hooks/Event/useDeleteEvent";
 import AdminEventRow from "../../../components/Admin/Event/AdminEventRow";
+import ErrorMessage from "../../../components/Common/ErrorMessage";
 
 const AdminEventsPage = () => {
   const { events, loading, error, refetch } = useAdminEvents();
@@ -10,8 +11,8 @@ const AdminEventsPage = () => {
   const { handleDelete } = useDeleteEvent(refetch);
 
   if (loading) return <LoadingSpinner />;
-  if (error)
-    return <div style={{ color: "red", padding: "2rem" }}>Hata: {error}</div>;
+
+  if (error) return <ErrorMessage message={error} />;
 
   return (
     <div

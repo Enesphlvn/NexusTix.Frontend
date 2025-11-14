@@ -1,4 +1,4 @@
-export interface EventFiltersRequest {
+export interface EventFiltersResponse {
   cityId?: number;
   districtId?: number;
   eventTypeId?: number;
