@@ -1,93 +1,35 @@
-import { useEffect, useMemo, useState } from "react";
 import FilterBar from "../../components/Common/FilterBar";
-import EventCard from "../../components/Event/EventCard";
-import { useCities } from "../../hooks/City/useCities";
-import { useEvents } from "../../hooks/Event/useEvents";
-import { useEventTypes } from "../../hooks/EventType/useEventTypes";
-import styles from "./HomePage.module.css";
-import type { EventFiltersRequest } from "../../models/Event/Requests/EventFiltersRequest";
-import { useSearchParams } from "react-router-dom";
 import LoadingSpinner from "../../components/Common/LoadingSpinner";
-import { useDistrictsByCity } from "../../hooks/District/useDistrictsByCity";
+import { useHomeFilter } from "../../hooks/Home/useHomeFilter";
+import ErrorMessage from "../../components/Common/ErrorMessage";
+import HomeEventList from "../../components/Home/HomeEventList";
+import styles from '../../components/Home/HomeEventList.module.css';
 
 const HomePage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const activeFilters: EventFiltersRequest = useMemo(() => {
-    return {
-      cityId: searchParams.get("city")
-        ? Number(searchParams.get("city"))
-        : undefined,
-      districtId: searchParams.get("district")
-        ? Number(searchParams.get("district"))
-        : undefined,
-      eventTypeId: searchParams.get("type")
-        ? Number(searchParams.get("type"))
-        : undefined,
-      date: searchParams.get("date") || undefined,
-    };
-  }, [searchParams]);
-
-  const [draftFilters, setDraftFilters] =
-    useState<EventFiltersRequest>(activeFilters);
-
-  useEffect(() => {
-    setDraftFilters(activeFilters);
-  }, [activeFilters]);
-
   const {
+    activeFilters,
+    draftFilters,
     events,
-    loading: eventsLoading,
-    error: eventsError,
-  } = useEvents(activeFilters);
-  const { cities, loading: citiesLoading } = useCities();
-  const { eventTypes, loading: eventTypesLoading } = useEventTypes();
-  const { districts } = useDistrictsByCity(draftFilters.cityId);
-
-  const isLoading = eventsLoading || citiesLoading || eventTypesLoading;
-
-  const handleCityChange = (id: string) => {
-    setDraftFilters((prev) => ({
-      ...prev,
-      cityId: id ? Number(id) : undefined,
-      districtId: undefined,
-    }));
-  };
-
-  const handleDistrictChange = (id: string) => {
-    setDraftFilters((prev) => ({
-      ...prev,
-      districtId: id ? Number(id) : undefined,
-    }));
-  };
-
-  const handleEventTypeChange = (id: string) => {
-    setDraftFilters((prev) => ({
-      ...prev,
-      eventTypeId: id ? Number(id) : undefined,
-    }));
-  };
-
-  const handleDateChange = (date: string) => {
-    setDraftFilters((prev) => ({ ...prev, date: date || undefined }));
-  };
-
-  const handleSearch = () => {
-    const params: any = {};
-
-    if (draftFilters.cityId) params.city = draftFilters.cityId.toString();
-    if (draftFilters.districtId)
-      params.district = draftFilters.districtId.toString();
-    if (draftFilters.eventTypeId)
-      params.type = draftFilters.eventTypeId.toString();
-    if (draftFilters.date) params.date = draftFilters.date;
-
-    setSearchParams(params);
-  };
+    cities,
+    eventTypes,
+    districts,
+    isLoading,
+    eventsError,
+    handleCityChange,
+    handleDistrictChange,
+    handleEventTypeChange,
+    handleDateChange,
+    handleSearch,
+  } = useHomeFilter();
 
   if (isLoading) return <LoadingSpinner />;
-  if (eventsError)
-    return <div style={{ color: "red" }}>Hata: {eventsError}</div>;
+  if (eventsError) return <ErrorMessage message={eventsError} />;
+
+  const isFiltering =
+    activeFilters.cityId ||
+    activeFilters.eventTypeId ||
+    activeFilters.date ||
+    activeFilters.districtId;
 
   return (
     <div className={styles.pageContainer}>
@@ -107,27 +49,10 @@ const HomePage = () => {
       />
 
       <h1 className={styles.header}>
-        {activeFilters.cityId ||
-        activeFilters.eventTypeId ||
-        activeFilters.date ||
-        activeFilters.districtId
-          ? "Arama Sonuçları"
-          : "Yaklaşan Etkinlikler"}
+        {isFiltering ? "Arama Sonuçları" : "Yaklaşan Etkinlikler"}
       </h1>
 
-      <div className={styles.eventGrid}>
-        {events.length > 0 ? (
-          events.map((event) => <EventCard key={event.id} event={event} />)
-        ) : (
-          <div className={styles.noEvents}>
-            <div className={styles.noEventsTitle}>Sonuç Bulunamadı 😔</div>
-            <div className={styles.noEventsText}>
-              Seçtiğiniz filtrelere uygun bir etkinlik bulamadık. Lütfen farklı
-              bir şehir veya tarih seçmeyi deneyin.
-            </div>
-          </div>
-        )}
-      </div>
+      <HomeEventList events={events} />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import ErrorMessage from "../../components/Common/ErrorMessage";
 import LoadingSpinner from "../../components/Common/LoadingSpinner";
 import ChangeEmailForm from "../../components/User/ChangeEmailForm";
 import ChangePasswordForm from "../../components/User/ChangePasswordForm";
@@ -10,8 +11,9 @@ const MyProfilePage = () => {
   const { user, loading, error, refetch } = useMyProfile();
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <div style={{ color: "red" }}>Hata: {error}</div>;
-  if (!user) return <div>Kullanıcı bulunamadı.</div>;
+  if (error) return <ErrorMessage message={error} />;
+
+  if (!user) return <ErrorMessage message="Kullanıcı bilgileri bulunamadı." />;
 
   const handleProfileUpdateSuccess = () => {
     refetch();
@@ -20,14 +22,11 @@ const MyProfilePage = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>Profilim</h1>
-
       <UserProfileInfo user={user} />
-
       <UpdateProfileForm
         user={user}
         onUpdateSuccess={handleProfileUpdateSuccess}
       />
-
       <ChangeEmailForm userId={user.id} currentEmail={user.email} />
       <ChangePasswordForm userId={user.id} />
     </div>
