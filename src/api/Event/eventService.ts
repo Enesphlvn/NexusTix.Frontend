@@ -4,6 +4,8 @@ import type { EventFiltersRequest } from "../../models/Event/Requests/EventFilte
 import type { ServiceResult } from "../../models/ServiceResult";
 import api from "../api";
 import type { EventAdminResponse } from "../../models/Event/Responses/EventAdminResponse";
+import type { CreateEventRequest } from "../../models/Event/Requests/CreateEventRequest";
+import type { UpdateEventRequest } from "../../models/Event/Requests/UpdateEventRequest";
 
 export const getAllEvents = async (): Promise<EventResponse[]> => {
   const response = await api.get<ServiceResult<EventResponse[]>>("/events");
@@ -32,7 +34,7 @@ export const getFilteredEvents = async (
   return response.data.data;
 };
 
-export const getEvent = async (id: number): Promise<EventAggregateResponse> => {
+export const getEventAggregate = async (id: number): Promise<EventAggregateResponse> => {
   const response = await api.get<ServiceResult<EventAggregateResponse>>(
     `/events/${id}/aggregate`
   );
@@ -58,6 +60,36 @@ export const getEventsForAdmin = async (): Promise<EventAdminResponse[]> => {
   const response = await api.get<ServiceResult<EventAdminResponse[]>>(
     "/events/admin-list"
   );
+
+  if (!response.data.isSuccess) {
+    throw new Error(response.data.errorMessages.join(", "));
+  }
+
+  return response.data.data!;
+};
+
+export const createEvent = async (request: CreateEventRequest): Promise<EventResponse> => {
+  const response = await api.post<ServiceResult<EventResponse>>("/events", request);
+
+  if (!response.data.isSuccess) {
+    throw new Error(response.data.errorMessages.join(", "));
+  }
+
+  return response.data.data!;
+};
+
+export const updateEvent = async (request: UpdateEventRequest): Promise<void> => {
+  const response = await api.put<ServiceResult<null>>(`/events/${request.id}`, request);
+
+  if (response.status === 204) return;
+  
+  if (!response.data.isSuccess) {
+    throw new Error(response.data.errorMessages.join(", "));
+  }
+};
+
+export const getEventById = async (id: number): Promise<EventResponse> => {
+  const response = await api.get<ServiceResult<EventResponse>>(`/events/${id}`);
 
   if (!response.data.isSuccess) {
     throw new Error(response.data.errorMessages.join(", "));

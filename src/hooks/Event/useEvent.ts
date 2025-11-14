@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { EventAggregateResponse } from "../../models/Event/Responses/EventAggregateResponse";
-import { getEvent } from "../../api/Event/eventService";
+import { getEventAggregate } from "../../api/Event/eventService";
 
 export const useEvent = (id: string | undefined) => {
   const [event, setEvent] = useState<EventAggregateResponse | null>(null);
@@ -15,7 +15,7 @@ export const useEvent = (id: string | undefined) => {
         setLoading(true);
         setError(null);
 
-        const data = await getEvent(Number(id));
+        const data = await getEventAggregate(Number(id));
 
         setEvent(data);
       } catch (err: any) {
