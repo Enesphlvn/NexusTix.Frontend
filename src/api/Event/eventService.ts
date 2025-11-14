@@ -1,6 +1,6 @@
 import type { EventResponse } from "../../models/Event/Responses/EventResponse";
 import type { EventAggregateResponse } from "../../models/Event/Responses/EventAggregateResponse";
-import type { EventFiltersResponse } from "../../models/Event/Responses/EventFiltersResponse";
+import type { EventFiltersRequest } from "../../models/Event/Requests/EventFiltersRequest";
 import type { ServiceResult } from "../../models/ServiceResult";
 import api from "../api";
 
@@ -15,7 +15,7 @@ export const getAllEvents = async (): Promise<EventResponse[]> => {
 };
 
 export const getFilteredEvents = async (
-  filters: EventFiltersResponse
+  filters: EventFiltersRequest
 ): Promise<EventResponse[]> => {
   const response = await api.get<ServiceResult<EventResponse[]>>("/events/filter", {
     params: filters,

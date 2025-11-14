@@ -1,9 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { useAuth } from "../../context/AuthContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+
+    toast.info("Başarıyla çıkış yapıldı.", {
+      position: "top-right",
+      autoClose: 2000,
+    });
+
+    navigate("/");
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -16,11 +29,8 @@ const Navbar = () => {
       <div className={styles.searchBar}></div>
 
       <div className={styles.navLinks}>
-        <Link to="/cities" className={styles.navLink}>
-          Şehirler
-        </Link>
-        <Link to="/events" className={styles.navLink}>
-          Etkinlikler
+        <Link to="/" className={styles.navLink}>
+          Anasayfa
         </Link>
 
         {isAuthenticated ? (
@@ -38,7 +48,7 @@ const Navbar = () => {
               Biletlerim
             </Link>
 
-            <button onClick={logout} className={styles.buttonSecondary}>
+            <button onClick={handleLogout} className={styles.buttonSecondary}>
               Çıkış Yap
             </button>
           </>

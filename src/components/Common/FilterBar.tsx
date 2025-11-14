@@ -2,16 +2,20 @@ import type React from "react";
 import type { CityResponse } from "../../models/City/Responses/CityResponse";
 import type { EventTypeResponse } from "../../models/EventType/Responses/EventTypeResponse";
 import styles from "./FilterBar.module.css";
+import type { DistrictResponse } from "../../models/District/DistrictResponse";
 
 interface FilterBarProps {
   cities: CityResponse[];
+  districts: DistrictResponse[];
   eventTypes: EventTypeResponse[];
 
   selectedCityId: string;
+  selectedDistrictId: string;
   selectedEventTypeId: string;
   selectedDate: string;
 
   onCityChange: (id: string) => void;
+  onDistrictChange: (id: string) => void;
   onEventTypeChange: (id: string) => void;
   onDateChange: (date: string) => void;
 
@@ -20,11 +24,14 @@ interface FilterBarProps {
 
 const FilterBar = ({
   cities,
+  districts,
   eventTypes,
   selectedCityId,
+  selectedDistrictId,
   selectedEventTypeId,
   selectedDate,
   onCityChange,
+  onDistrictChange,
   onEventTypeChange,
   onDateChange,
   onSearch,
@@ -65,6 +72,24 @@ const FilterBar = ({
           {cities.map((city) => (
             <option key={city.id} value={city.id}>
               {city.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className={styles.formGroup}>
+        <label htmlFor="district">İlçe</label>
+        <select
+          id="district"
+          className={styles.selectInput}
+          value={selectedDistrictId}
+          onChange={(e) => onDistrictChange(e.target.value)}
+          disabled={districts.length === 0}
+        >
+          <option value="">Tüm İlçeler</option>
+          {districts.map((district) => (
+            <option key={district.id} value={district.id}>
+              {district.name}
             </option>
           ))}
         </select>

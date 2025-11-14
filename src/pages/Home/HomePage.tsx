@@ -5,17 +5,21 @@ import { useCities } from "../../hooks/City/useCities";
 import { useEvents } from "../../hooks/Event/useEvents";
 import { useEventTypes } from "../../hooks/EventType/useEventTypes";
 import styles from "./HomePage.module.css";
-import type { EventFiltersResponse } from "../../models/Event/Responses/EventFiltersResponse";
+import type { EventFiltersRequest } from "../../models/Event/Requests/EventFiltersRequest";
 import { useSearchParams } from "react-router-dom";
 import LoadingSpinner from "../../components/Common/LoadingSpinner";
+import { useDistrictsByCity } from "../../hooks/District/useDistrictsByCity";
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const activeFilters: EventFiltersResponse = useMemo(() => {
+  const activeFilters: EventFiltersRequest = useMemo(() => {
     return {
       cityId: searchParams.get("city")
         ? Number(searchParams.get("city"))
+        : undefined,
+      districtId: searchParams.get("district")
+        ? Number(searchParams.get("district"))
         : undefined,
       eventTypeId: searchParams.get("type")
         ? Number(searchParams.get("type"))
@@ -25,7 +29,7 @@ const HomePage = () => {
   }, [searchParams]);
 
   const [draftFilters, setDraftFilters] =
-    useState<EventFiltersResponse>(activeFilters);
+    useState<EventFiltersRequest>(activeFilters);
 
   useEffect(() => {
     setDraftFilters(activeFilters);
@@ -36,9 +40,9 @@ const HomePage = () => {
     loading: eventsLoading,
     error: eventsError,
   } = useEvents(activeFilters);
-
   const { cities, loading: citiesLoading } = useCities();
   const { eventTypes, loading: eventTypesLoading } = useEventTypes();
+  const { districts } = useDistrictsByCity(draftFilters.cityId);
 
   const isLoading = eventsLoading || citiesLoading || eventTypesLoading;
 
@@ -46,6 +50,14 @@ const HomePage = () => {
     setDraftFilters((prev) => ({
       ...prev,
       cityId: id ? Number(id) : undefined,
+      districtId: undefined,
+    }));
+  };
+
+  const handleDistrictChange = (id: string) => {
+    setDraftFilters((prev) => ({
+      ...prev,
+      districtId: id ? Number(id) : undefined,
     }));
   };
 
@@ -64,6 +76,8 @@ const HomePage = () => {
     const params: any = {};
 
     if (draftFilters.cityId) params.city = draftFilters.cityId.toString();
+    if (draftFilters.districtId)
+      params.district = draftFilters.districtId.toString();
     if (draftFilters.eventTypeId)
       params.type = draftFilters.eventTypeId.toString();
     if (draftFilters.date) params.date = draftFilters.date;
@@ -80,17 +94,23 @@ const HomePage = () => {
       <FilterBar
         cities={cities}
         eventTypes={eventTypes}
+        districts={districts}
         selectedCityId={draftFilters.cityId?.toString() || ""}
+        selectedDistrictId={draftFilters.districtId?.toString() || ""}
         selectedEventTypeId={draftFilters.eventTypeId?.toString() || ""}
         selectedDate={draftFilters.date || ""}
         onCityChange={handleCityChange}
+        onDistrictChange={handleDistrictChange}
         onEventTypeChange={handleEventTypeChange}
         onDateChange={handleDateChange}
         onSearch={handleSearch}
       />
 
       <h1 className={styles.header}>
-        {activeFilters.cityId || activeFilters.eventTypeId || activeFilters.date
+        {activeFilters.cityId ||
+        activeFilters.eventTypeId ||
+        activeFilters.date ||
+        activeFilters.districtId
           ? "Arama Sonuçları"
           : "Yaklaşan Etkinlikler"}
       </h1>

@@ -1,6 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import CitiesPage from "../pages/City/CitiesPage";
-import CityDetailPage from "../pages/City/CityDetailPage";
 import MainLayout from "../components/Layout/MainLayout";
 import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/Auth/LoginPage";
@@ -18,8 +16,6 @@ export const AppRouter = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="events/:id" element={<EventDetailPage />} />
-          <Route path="cities" element={<CitiesPage />} />
-          <Route path="cities/:id" element={<CityDetailPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
 
