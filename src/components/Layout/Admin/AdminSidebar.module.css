@@ -1,0 +1,74 @@
+.sidebar {
+  width: 260px;
+  background-color: #1e1e2d;
+  color: #a2a3b7;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+.logo {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  background-color: #1b1b28;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.menu {
+  list-style: none;
+  padding: 1rem 0;
+  margin: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.menuItem a {
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1.5rem;
+  color: #a2a3b7;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.menuItem a:hover,
+.activeLink {
+  background-color: #2b2b40;
+  color: #fff !important;
+  border-left-color: #3699ff !important;
+}
+
+.footer {
+  padding: 1.5rem;
+  border-top: 1px solid #2b2b40;
+}
+
+.backButton {
+  display: block;
+  text-align: center;
+  padding: 0.8rem;
+  background-color: #2b2b40;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #3699ff;
+}

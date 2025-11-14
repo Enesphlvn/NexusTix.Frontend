@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import styles from "./MainLayout.module.css";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 import { ToastContainer } from "react-toastify";
 
 const MainLayout = () => {

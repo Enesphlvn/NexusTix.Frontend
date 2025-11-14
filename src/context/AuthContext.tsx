@@ -11,6 +11,7 @@ import * as authService from "../api/Auth/authService";
 interface AuthUser {
   email: string;
   fullName: string;
+  roles: string[];
 }
 
 interface AuthContextType {
@@ -47,6 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const authUser: AuthUser = {
         email: response.email,
         fullName: `${response.firstName} ${response.lastName}`,
+        roles: response.roles,
       };
 
       setToken(response.token);
