@@ -1,12 +1,12 @@
 import Swal from "sweetalert2";
-import { deleteEvent } from "../../api/Event/eventService";
+import { passiveEvent } from "../../api/Event/eventService";
 import { toast } from "react-toastify";
 
-export const useDeleteEvent = (onSuccess: () => void) => {
-  const handleDelete = async (id: number) => {
+export const usePassiveEvent = (onSuccess: () => void) => {
+  const handlePassive = async (id: number) => {
     const result = await Swal.fire({
       title: "Emin misiniz?",
-      text: "Bu etkinlik kalıcı olarak silinecektir!",
+      text: "Bu etkinlik pasife alınacak ve listelerden kaldırılacaktır!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
@@ -17,7 +17,8 @@ export const useDeleteEvent = (onSuccess: () => void) => {
 
     if (result.isConfirmed) {
       try {
-        await deleteEvent(id);
+        await passiveEvent(id);
+
         toast.success("Etkinlik başarıyla silindi.");
         onSuccess();
       } catch (err: any) {
@@ -26,5 +27,5 @@ export const useDeleteEvent = (onSuccess: () => void) => {
     }
   };
 
-  return { handleDelete };
+  return { handlePassive };
 };

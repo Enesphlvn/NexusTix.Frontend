@@ -1,6 +1,6 @@
 import type { EventTypeResponse } from "../../../models/EventType/Responses/EventTypeResponse";
 import type { VenueResponse } from "../../../models/Venue/Responses/VenueResponse";
-import styles from "./AdminEventForm.module.css";
+import styles from "../AdminForm.module.css";
 
 interface AdminEventFormProps {
   name: string;

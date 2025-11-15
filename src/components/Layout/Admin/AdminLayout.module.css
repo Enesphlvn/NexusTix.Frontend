@@ -25,6 +25,34 @@
   z-index: 900;
 }
 
+.headerTitle {
+  margin: 0;
+  color: #444;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.userActions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.userInfo {
+  text-align: right;
+}
+
+.userName {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.userRole {
+  font-size: 0.8rem;
+  color: #888;
+}
+
 .pageContent {
   padding: 2rem;
   flex: 1;
@@ -39,7 +67,9 @@
   cursor: pointer;
   font-weight: 600;
   font-size: 0.9rem;
+  transition: background-color 0.2s;
 }
+
 .logoutButton:hover {
   background-color: #fcc;
 }

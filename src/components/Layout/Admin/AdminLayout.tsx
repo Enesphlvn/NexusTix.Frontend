@@ -19,16 +19,12 @@ const AdminLayout = () => {
 
       <div className={styles.contentWrapper}>
         <header className={styles.header}>
-          <h3 style={{ margin: 0, color: "#444" }}>Yönetim Paneli</h3>
+          <h3 className={styles.headerTitle}>Yönetim Paneli</h3>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-            <div style={{ textAlign: "right" }}>
-              <div style={{ fontSize: "0.9rem", fontWeight: "bold" }}>
-                {user?.fullName}
-              </div>
-              <div style={{ fontSize: "0.8rem", color: "#888" }}>
-                Administrator
-              </div>
+          <div className={styles.userActions}>
+            <div className={styles.userInfo}>
+              <div className={styles.userName}>{user?.fullName}</div>
+              <div className={styles.userRole}>Administrator</div>
             </div>
             <button onClick={handleLogout} className={styles.logoutButton}>
               Çıkış

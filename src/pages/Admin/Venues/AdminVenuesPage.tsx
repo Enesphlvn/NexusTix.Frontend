@@ -1,14 +1,13 @@
-import LoadingSpinner from "../../../components/Common/LoadingSpinner";
 import { Link } from "react-router-dom";
-import { useAdminEvents } from "../../../hooks/Event/useAdminEvents";
-import { usePassiveEvent } from "../../../hooks/Event/usePassiveEvent";
-import AdminEventRow from "../../../components/Admin/Event/AdminEventRow";
+import LoadingSpinner from "../../../components/Common/LoadingSpinner";
 import ErrorMessage from "../../../components/Common/ErrorMessage";
+import { useAdminVenues } from "../../../hooks/Venue/useAdminVenues";
+import { usePassiveVenue } from "../../../hooks/Venue/usePassiveVenue";
+import AdminVenueRow from "../../../components/Admin/Venue/AdminVenueRow";
 
-const AdminEventsPage = () => {
-  const { events, loading, error, refetch } = useAdminEvents();
-
-  const { handlePassive } = usePassiveEvent(refetch);
+const AdminVenuesPage = () => {
+  const { venues, loading, error, refetch } = useAdminVenues();
+  const { handlePassive } = usePassiveVenue(refetch);
 
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorMessage message={error} />;
@@ -30,9 +29,9 @@ const AdminEventsPage = () => {
           marginBottom: "2rem",
         }}
       >
-        <h2 style={{ margin: 0, color: "#333" }}>Etkinlik Yönetimi</h2>
+        <h2 style={{ margin: 0, color: "#333" }}>Mekan Yönetimi</h2>
         <Link
-          to="/admin/events/new"
+          to="/admin/venues/new"
           style={{
             padding: "0.8rem 1.5rem",
             background: "#007bff",
@@ -45,7 +44,7 @@ const AdminEventsPage = () => {
             gap: "0.5rem",
           }}
         >
-          <span>+</span> Yeni Etkinlik Ekle
+          <span>+</span> Yeni Mekan Ekle
         </Link>
       </div>
 
@@ -54,7 +53,7 @@ const AdminEventsPage = () => {
           style={{
             width: "100%",
             borderCollapse: "collapse",
-            minWidth: "800px",
+            minWidth: "600px",
           }}
         >
           <thead>
@@ -66,12 +65,8 @@ const AdminEventsPage = () => {
               }}
             >
               <th style={{ padding: "1rem", color: "#495057" }}>ID</th>
-              <th style={{ padding: "1rem", color: "#495057" }}>Etkinlik</th>
-              <th style={{ padding: "1rem", color: "#495057" }}>Tarih</th>
-              <th style={{ padding: "1rem", color: "#495057" }}>
-                Mekan / Kategori
-              </th>
-              <th style={{ padding: "1rem", color: "#495057" }}>Fiyat</th>
+              <th style={{ padding: "1rem", color: "#495057" }}>Mekan Adı</th>
+              <th style={{ padding: "1rem", color: "#495057" }}>Bilgiler</th>
               <th
                 style={{
                   padding: "1rem",
@@ -84,26 +79,18 @@ const AdminEventsPage = () => {
             </tr>
           </thead>
           <tbody>
-            {events.map((event) => (
-              <AdminEventRow
-                key={event.id}
-                event={event}
+            {venues.map((venue) => (
+              <AdminVenueRow
+                key={venue.id}
+                venue={venue}
                 onDelete={handlePassive}
               />
             ))}
           </tbody>
         </table>
-
-        {events.length === 0 && (
-          <div
-            style={{ textAlign: "center", padding: "3rem", color: "#6c757d" }}
-          >
-            Henüz hiç etkinlik eklenmemiş.
-          </div>
-        )}
       </div>
     </div>
   );
 };
 
-export default AdminEventsPage;
+export default AdminVenuesPage;

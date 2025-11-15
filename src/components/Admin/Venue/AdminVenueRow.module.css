@@ -1,0 +1,69 @@
+.row {
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.row:hover {
+  background-color: #f8f9fa;
+}
+
+.cell {
+  padding: 1rem;
+  color: #495057;
+}
+
+.idCell {
+  font-weight: bold;
+  color: #6c757d;
+}
+
+.nameCell {
+  font-weight: 600;
+  color: #212529;
+}
+
+.capacityCell {
+  font-size: 0.95rem;
+}
+
+.actionsCell {
+  padding: 1rem;
+  text-align: right;
+}
+
+.actionsWrapper {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.editButton {
+  padding: 0.5rem 1rem;
+  background: #ffc107;
+  color: #212529;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  background-color: #e0a800;
+}
+
+.deleteButton {
+  padding: 0.5rem 1rem;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
+}
