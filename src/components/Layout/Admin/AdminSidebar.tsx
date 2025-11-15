@@ -10,7 +10,7 @@ const AdminSidebar = () => {
   return (
     <aside className={styles.sidebar}>
       <Link to="/admin/dashboard" className={styles.logo}>
-        NEXUSTIX <span style={{ color: "#3699ff" }}>.ADMIN</span>
+        NEXUSTIX <span className={styles.logoHighlight}>.ADMIN</span>
       </Link>
 
       <ul className={styles.menu}>
