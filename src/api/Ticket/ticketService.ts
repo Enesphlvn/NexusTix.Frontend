@@ -11,9 +11,8 @@ export const getTicketCountByEvent = async (
     `/tickets/event/${eventId}/count`
   );
 
-  if (!response.data.isSuccess) {
+  if (!response.data.isSuccess)
     throw new Error(response.data.errorMessages.join(", "));
-  }
 
   return response.data.data ?? 0;
 };
@@ -26,9 +25,8 @@ export const createTicket = async (
     request
   );
 
-  if (!response.data.isSuccess) {
+  if (!response.data.isSuccess)
     throw new Error(response.data.errorMessages.join(", "));
-  }
 
   return response.data.data;
 };
@@ -38,9 +36,8 @@ export const getMyTickets = async (): Promise<TicketByUserResponse[]> => {
     "/tickets/me"
   );
 
-  if (!response.data.isSuccess) {
+  if (!response.data.isSuccess)
     throw new Error(response.data.errorMessages.join(", "));
-  }
 
   return response.data.data;
 };
@@ -51,13 +48,7 @@ export const cancelTicket = async (ticketId: number): Promise<void> => {
     {}
   );
 
-  if (response.status === 204) {
-    return;
-  }
+  if (response.status === 204) return;
 
-  if (response.data && !response.data.isSuccess) {
-    const errorMessage =
-      response.data.errorMessages?.join(", ") || "İptal işlemi başarısız.";
-    throw new Error(errorMessage);
-  }
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 };

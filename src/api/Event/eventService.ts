@@ -10,9 +10,7 @@ import type { UpdateEventRequest } from "../../models/Event/Requests/UpdateEvent
 export const getAllEvents = async (): Promise<EventResponse[]> => {
   const response = await api.get<ServiceResult<EventResponse[]>>("/events");
 
-  if (!response.data.isSuccess) {
-    throw new Error(response.data.errorMessages.join(", "));
-  }
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 
   return response.data.data;
 };
@@ -27,9 +25,7 @@ export const getFilteredEvents = async (
     }
   );
 
-  if (!response.data.isSuccess) {
-    throw new Error(response.data.errorMessages.join(", "));
-  }
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 
   return response.data.data;
 };
@@ -39,9 +35,7 @@ export const getEventAggregate = async (id: number): Promise<EventAggregateRespo
     `/events/${id}/aggregate`
   );
 
-  if (!response.data.isSuccess) {
-    throw new Error(response.data.errorMessages.join(", "));
-  }
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 
   return response.data.data;
 };
@@ -51,9 +45,7 @@ export const deleteEvent = async (id: number): Promise<void> => {
 
   if (response.status === 204) return;
 
-  if (!response.data.isSuccess) {
-    throw new Error(response.data.errorMessages.join(", "));
-  }
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 };
 
 export const getEventsForAdmin = async (): Promise<EventAdminResponse[]> => {
@@ -61,9 +53,7 @@ export const getEventsForAdmin = async (): Promise<EventAdminResponse[]> => {
     "/events/admin-list"
   );
 
-  if (!response.data.isSuccess) {
-    throw new Error(response.data.errorMessages.join(", "));
-  }
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 
   return response.data.data!;
 };
@@ -71,9 +61,7 @@ export const getEventsForAdmin = async (): Promise<EventAdminResponse[]> => {
 export const createEvent = async (request: CreateEventRequest): Promise<EventResponse> => {
   const response = await api.post<ServiceResult<EventResponse>>("/events", request);
 
-  if (!response.data.isSuccess) {
-    throw new Error(response.data.errorMessages.join(", "));
-  }
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 
   return response.data.data!;
 };
@@ -83,17 +71,21 @@ export const updateEvent = async (request: UpdateEventRequest): Promise<void> =>
 
   if (response.status === 204) return;
   
-  if (!response.data.isSuccess) {
-    throw new Error(response.data.errorMessages.join(", "));
-  }
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 };
 
 export const getEventById = async (id: number): Promise<EventResponse> => {
   const response = await api.get<ServiceResult<EventResponse>>(`/events/${id}`);
 
-  if (!response.data.isSuccess) {
-    throw new Error(response.data.errorMessages.join(", "));
-  }
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 
   return response.data.data!;
+};
+
+export const passiveEvent = async (id: number): Promise<void> => {
+  const response = await api.patch<ServiceResult<null>>(`/events/${id}/passive`);
+
+  if (response.status === 204) return;
+
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 };

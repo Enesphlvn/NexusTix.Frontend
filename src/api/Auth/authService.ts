@@ -15,9 +15,7 @@ export const register = async (
     request
   );
 
-  if (!response.data.isSuccess) {
-    throw new Error(response.data.errorMessages.join(", "));
-  }
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 
   return response.data.data;
 };
@@ -28,9 +26,7 @@ export const login = async (request: LoginRequest): Promise<LoginResponse> => {
     request
   );
 
-  if (!response.data.isSuccess) {
-    throw new Error(response.data.errorMessages.join(", "));
-  }
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 
   return response.data.data;
 };
