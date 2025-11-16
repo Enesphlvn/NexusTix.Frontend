@@ -11,7 +11,11 @@ interface TicketCardProps {
 }
 
 const TicketCard = ({ ticket, onRefresh }: TicketCardProps) => {
-  const formattedDate = new Date(ticket.eventDate).toLocaleDateString("tr-TR", {
+  const eventDateObj = new Date(ticket.eventDate);
+  const now = new Date();
+  const isExpired = eventDateObj < now;
+
+  const formattedDate = eventDateObj.toLocaleDateString("tr-TR", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -28,6 +32,9 @@ const TicketCard = ({ ticket, onRefresh }: TicketCardProps) => {
   } else if (ticket.isUsed) {
     statusClass = styles.used;
     statusText = "KULLANILDI";
+  } else if (isExpired) {
+    statusClass = styles.expired;
+    statusText = "SÜRESİ DOLDU";
   }
 
   const handleCancelClick = async () => {
@@ -72,7 +79,7 @@ const TicketCard = ({ ticket, onRefresh }: TicketCardProps) => {
           {statusText}
         </div>
 
-        {!ticket.isUsed && !ticket.isCancelled && (
+        {!ticket.isUsed && !ticket.isCancelled && !isExpired && (
           <button className={styles.cancelButton} onClick={handleCancelClick}>
             Bileti İptal Et
           </button>
@@ -80,10 +87,15 @@ const TicketCard = ({ ticket, onRefresh }: TicketCardProps) => {
       </div>
 
       <div className={styles.qrSection}>
-        {ticket.isCancelled || ticket.isUsed ? (
+        {ticket.isCancelled || ticket.isUsed || isExpired ? (
           <div style={{ textAlign: "center", color: "#999" }}>
             <span style={{ fontSize: "2rem" }}>🚫</span>
-            <p style={{ margin: 0, fontSize: "0.8rem" }}>Geçersiz</p>
+            <p style={{ margin: 0, fontSize: "0.8rem" }}>
+              {ticket.isCancelled ? "İptal Edildi"
+                : ticket.isUsed ? "Kullanıldı"
+                : isExpired ? "Süresi Doldu"
+                : "Geçersiz"}
+            </p>
           </div>
         ) : (
           <QRCodeSVG value={ticket.qrCodeGuid} size={100} level={"H"} />

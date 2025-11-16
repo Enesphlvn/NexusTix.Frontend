@@ -88,6 +88,12 @@
   text-decoration: line-through;
 }
 
+.expired {
+  background-color: #e9ecef;
+  color: #495057;
+  border: 1px solid #ced4da;
+}
+
 .cancelButton {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
