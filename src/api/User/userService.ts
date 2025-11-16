@@ -1,6 +1,7 @@
 import type { ServiceResult } from "../../models/ServiceResult";
 import type { UpdateUserRequest } from "../../models/User/Requests/UpdateUserRequest";
 import type { UpdateUserRoleRequest } from "../../models/User/Requests/UpdateUserRoleRequest";
+import type { UserAdminResponse } from "../../models/User/Responses/UserAdminResponse";
 import type { UserResponse } from "../../models/User/Responses/UserResponse";
 import api from "../api";
 
@@ -45,3 +46,11 @@ export const passiveUser = async (id:number): Promise<void> => {
   
   if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 }
+
+export const getAllUsersForAdmin = async (): Promise<UserAdminResponse[]> => {
+  const response = await api.get<ServiceResult<UserAdminResponse[]>>('/users/admin-list');
+
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+
+  return response.data.data!;
+};
