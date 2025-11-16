@@ -4,7 +4,7 @@ import ErrorMessage from "../../../components/Common/ErrorMessage";
 import { useAdminVenues } from "../../../hooks/Venue/useAdminVenues";
 import { usePassiveVenue } from "../../../hooks/Venue/usePassiveVenue";
 import AdminVenueList from "../../../components/Admin/Venue/AdminVenueList";
-import styles from "../Events/AdminEventsPage.module.css";
+import styles from "../Common/AdminEntitiesPage.module.css";
 
 const AdminVenuesPage = () => {
   const { venues, loading, error, refetch } = useAdminVenues();

@@ -4,7 +4,7 @@ import { useAdminEvents } from "../../../hooks/Event/useAdminEvents";
 import { usePassiveEvent } from "../../../hooks/Event/usePassiveEvent";
 import ErrorMessage from "../../../components/Common/ErrorMessage";
 import AdminEventList from "../../../components/Admin/Event/AdminEventList";
-import styles from './AdminEventsPage.module.css';
+import styles from '../Common/AdminEntitiesPage.module.css';
 
 const AdminEventsPage = () => {
   const { events, loading, error, refetch } = useAdminEvents();

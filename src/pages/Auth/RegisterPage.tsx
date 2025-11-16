@@ -1,5 +1,5 @@
 import { useRegister } from "../../hooks/Auth/useRegister";
-import RegisterForm from "../../components/Auth/RegisterForm";
+import RegisterForm from "../../components/Auth/Register/RegisterForm";
 
 const RegisterPage = () => {
   const registerLogic = useRegister();

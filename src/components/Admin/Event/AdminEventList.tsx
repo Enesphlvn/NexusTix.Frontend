@@ -1,6 +1,6 @@
 import type { EventAdminResponse } from "../../../models/Event/Responses/EventAdminResponse";
 import AdminEventRow from "./AdminEventRow";
-import styles from "./AdminEventList.module.css";
+import styles from "../Common/AdminList.module.css";
 
 interface AdminEventListProps {
   events: EventAdminResponse[];

@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
-import type { UserResponse } from "../../models/User/Responses/UserResponse";
 import {
-  getAllUsers,
+  getAllUsersForAdmin,
   passiveUser,
   updateRole,
 } from "../../api/User/userService";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import type { UserAdminResponse } from "../../models/User/Responses/UserAdminResponse";
 
 export const useAdminUsers = () => {
-  const [users, setUsers] = useState<UserResponse[]>([]);
+  const [users, setUsers] = useState<UserAdminResponse[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,7 +17,7 @@ export const useAdminUsers = () => {
     try {
       setLoading(true);
 
-      const data = await getAllUsers();
+      const data = await getAllUsersForAdmin();
 
       setUsers(data);
     } catch (err: any) {

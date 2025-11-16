@@ -1,6 +1,6 @@
 import type { CityResponse } from "../../../models/City/Responses/CityResponse";
 import type { DistrictResponse } from "../../../models/District/DistrictResponse";
-import styles from "../AdminForm.module.css";
+import styles from "../Common/AdminForm.module.css";
 
 interface AdminVenueFormProps {
   name: string;

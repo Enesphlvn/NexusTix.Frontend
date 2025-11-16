@@ -1,6 +1,6 @@
 import type { VenueResponse } from "../../../models/Venue/Responses/VenueResponse";
 import AdminVenueRow from "./AdminVenueRow";
-import styles from "../Event/AdminEventList.module.css";
+import styles from "../Common/AdminList.module.css";
 
 interface AdminVenueListProps {
   venues: VenueResponse[];

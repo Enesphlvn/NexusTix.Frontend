@@ -9,12 +9,13 @@ import MyTicketsPage from "../pages/Ticket/MyTicketsPage";
 import MyProfilePage from "../pages/User/MyProfilePage";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminLayout from "../components/Layout/Admin/AdminLayout";
-import DashboardPage from "../pages/Admin/DashboardPage";
+import DashboardPage from "../pages/Admin/Common/DashboardPage";
 import AdminRoute from "./AdminRoute";
 import AdminEventsPage from "../pages/Admin/Events/AdminEventsPage";
 import AdminEventFormPage from "../pages/Admin/Events/AdminEventFormPage";
 import AdminVenueFormPage from "../pages/Admin/Venues/AdminVenueFormPage";
 import AdminVenuesPage from "../pages/Admin/Venues/AdminVenuesPage";
+import AdminUsersPage from "../pages/Admin/Users/AdminUsersPage";
 
 export const AppRouter = () => {
   return (
@@ -46,6 +47,8 @@ export const AppRouter = () => {
             <Route path="venues" element={<AdminVenuesPage />} />
             <Route path="venues/new" element={<AdminVenueFormPage />} />
             <Route path="venues/edit/:id" element={<AdminVenueFormPage />} />
+
+            <Route path="users" element={<AdminUsersPage />} />
           </Route>
         </Route>
       </Routes>
