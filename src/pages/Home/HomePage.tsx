@@ -3,7 +3,8 @@ import LoadingSpinner from "../../components/Common/LoadingSpinner";
 import { useHomeFilter } from "../../hooks/Home/useHomeFilter";
 import ErrorMessage from "../../components/Common/ErrorMessage";
 import HomeEventList from "../../components/Home/HomeEventList";
-import styles from '../../components/Home/HomeEventList.module.css';
+import styles from "./HomePage.module.css";
+import heroStyles from "./Hero.module.css";
 
 const HomePage = () => {
   const {
@@ -32,27 +33,45 @@ const HomePage = () => {
     activeFilters.districtId;
 
   return (
-    <div className={styles.pageContainer}>
-      <FilterBar
-        cities={cities}
-        eventTypes={eventTypes}
-        districts={districts}
-        selectedCityId={draftFilters.cityId?.toString() || ""}
-        selectedDistrictId={draftFilters.districtId?.toString() || ""}
-        selectedEventTypeId={draftFilters.eventTypeId?.toString() || ""}
-        selectedDate={draftFilters.date || ""}
-        onCityChange={handleCityChange}
-        onDistrictChange={handleDistrictChange}
-        onEventTypeChange={handleEventTypeChange}
-        onDateChange={handleDateChange}
-        onSearch={handleSearch}
-      />
+    <div
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
+      <div className={heroStyles.heroContainer}>
+        <div className={heroStyles.overlay}></div>
 
-      <h1 className={styles.header}>
-        {isFiltering ? "Arama Sonuçları" : "Yaklaşan Etkinlikler"}
-      </h1>
+        <div className={heroStyles.content}>
+          <h1 className={heroStyles.title}>Hayatın Ritmini Yakala!</h1>
+          <p className={heroStyles.subtitle}>
+            Konserlerden tiyatrolara, şehrindeki en iyi etkinlikleri keşfetmeye
+            başla.
+          </p>
+        </div>
 
-      <HomeEventList events={events} />
+        <div className={heroStyles.filterWrapper}>
+          <FilterBar
+            cities={cities}
+            eventTypes={eventTypes}
+            districts={districts}
+            selectedCityId={draftFilters.cityId?.toString() || ""}
+            selectedDistrictId={draftFilters.districtId?.toString() || ""}
+            selectedEventTypeId={draftFilters.eventTypeId?.toString() || ""}
+            selectedDate={draftFilters.date || ""}
+            onCityChange={handleCityChange}
+            onDistrictChange={handleDistrictChange}
+            onEventTypeChange={handleEventTypeChange}
+            onDateChange={handleDateChange}
+            onSearch={handleSearch}
+          />
+        </div>
+      </div>
+
+      <div className={styles.pageContainer}>
+        <h1 className={styles.header}>
+          {isFiltering ? "Arama Sonuçları" : "Yaklaşan Etkinlikler"}
+        </h1>
+
+        <HomeEventList events={events} />
+      </div>
     </div>
   );
 };
