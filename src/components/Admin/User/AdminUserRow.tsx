@@ -4,22 +4,19 @@ import styles from "./AdminUserRow.module.css";
 interface AdminUserRowProps {
   user: UserAdminResponse;
   onRoleChange: (id: number, newRole: string) => void;
-  onPassive: (id: number) => void;
+  onPassive: (id: number, isActive: boolean) => void;
 }
 
 const AdminUserRow = ({ user, onRoleChange, onPassive }: AdminUserRowProps) => {
   const currentRole = user.roles.length > 0 ? user.roles[0] : "User";
-
   const createdDate = new Date(user.created).toLocaleDateString("tr-TR");
 
   return (
     <tr className={styles.row}>
       <td className={`${styles.cell} ${styles.idCell}`}>#{user.id}</td>
-
       <td className={`${styles.cell} ${styles.nameCell}`}>
         {user.firstName} {user.lastName}
       </td>
-
       <td className={`${styles.cell} ${styles.emailCell}`}>{user.email}</td>
 
       <td className={styles.cell}>
@@ -47,14 +44,14 @@ const AdminUserRow = ({ user, onRoleChange, onPassive }: AdminUserRowProps) => {
       <td className={styles.cell}>{createdDate}</td>
 
       <td style={{ textAlign: "right", padding: "1rem" }}>
-        {user.isActive && (
-          <button
-            className={styles.deleteButton}
-            onClick={() => onPassive(user.id)}
-          >
-            Pasife Al
-          </button>
-        )}
+        <button
+          className={
+            user.isActive ? styles.deleteButton : styles.activateButton
+          }
+          onClick={() => onPassive(user.id, user.isActive)}
+        >
+          {user.isActive ? "Pasife Al" : "Aktife Al"}
+        </button>
       </td>
     </tr>
   );

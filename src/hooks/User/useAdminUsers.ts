@@ -16,9 +16,7 @@ export const useAdminUsers = () => {
   const fetchUsers = useCallback(async () => {
     try {
       setLoading(true);
-
       const data = await getAllUsersForAdmin();
-
       setUsers(data);
     } catch (err: any) {
       setError(err.message || "Kullanıcılar yüklenemedi.");
@@ -41,20 +39,31 @@ export const useAdminUsers = () => {
     }
   };
 
-  const handlePassive = async (id: number) => {
+  const handlePassive = async (id: number, isActive: boolean) => {
+    const actionText = isActive ? "Pasife" : "Aktife";
+    const descriptionText = isActive
+      ? "Bu kullanıcı sisteme giriş yapamayacak."
+      : "Bu kullanıcı tekrar sisteme giriş yapabilecek.";
+    const confirmColor = isActive ? "#d33" : "#28a745";
+
     const result = await Swal.fire({
-      title: "Kullanıcıyı Pasife Al?",
-      text: "Bu kullanıcı sisteme giriş yapamayacak.",
+      title: `Kullanıcıyı ${actionText} Al?`,
+      text: descriptionText,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Evet, Pasife Al",
+      confirmButtonColor: confirmColor,
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: `Evet, ${actionText} Al`,
       cancelButtonText: "Vazgeç",
     });
 
     if (result.isConfirmed) {
       try {
         await passiveUser(id);
-        toast.success("Kullanıcı pasife alındı.");
+
+        toast.success(
+          `Kullanıcı başarıyla ${actionText.toLowerCase()} alındı.`
+        );
         fetchUsers();
       } catch (err: any) {
         toast.error(err.message);
