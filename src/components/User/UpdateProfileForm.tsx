@@ -46,26 +46,29 @@ const UpdateProfileForm = ({
     <div className={styles.section}>
       <h2 className={styles.sectionTitle}>Bilgilerimi Güncelle</h2>
       <form onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
-          <label>Ad</label>
-          <input
-            type="text"
-            className={styles.input}
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
+            <label>Ad</label>
+            <input
+              type="text"
+              className={styles.input}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Soyad</label>
+            <input
+              type="text"
+              className={styles.input}
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
         </div>
-        <div className={styles.formGroup}>
-          <label>Soyad</label>
-          <input
-            type="text"
-            className={styles.input}
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </div>
+
         <div className={styles.formGroup}>
           <label>Telefon</label>
           <input

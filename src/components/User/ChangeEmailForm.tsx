@@ -18,6 +18,12 @@ const ChangeEmailForm = ({ userId, currentEmail }: ChangeEmailFormProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (newEmail === currentEmail) {
+      toast.info("Yeni e-posta adresi eskisiyle aynı.");
+      return;
+    }
+
     try {
       await updateEmail({ id: userId, newEmail, currentPassword: password });
       toast.success(

@@ -1,23 +1,73 @@
-.section {
+.card {
   background-color: #ffffff;
-  border-radius: 16px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  border: 1px solid #f0f0f0;
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 2px 5px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.sectionTitle {
-  font-size: 1.25rem;
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+  font-size: 2rem;
   font-weight: 700;
-  color: #007bff;
-  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+  letter-spacing: 1px;
+}
+
+.nameSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.fullName {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.roleBadge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 20px;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .infoGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .infoItem {
@@ -25,18 +75,35 @@
   flex-direction: column;
 }
 
-.infoItem label {
-  font-size: 0.85rem;
+.label {
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #8898aa;
+  letter-spacing: 0.05em;
   font-weight: 700;
-  margin-bottom: 0.4rem;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
 }
 
-.infoItem p {
+.value {
   font-size: 1.1rem;
-  color: #32325d;
-  font-weight: 500;
-  margin: 0;
+  font-weight: 600;
+  color: #374151;
+  word-break: break-word;
+}
+
+.valueEmail {
+  color: #007bff;
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
 }
