@@ -27,6 +27,11 @@ const DashboardStats = ({ stats }: DashboardStatsProps) => {
         color="#007bff"
       />
       <StatCard
+        title="Toplam Etkinlik"
+        value={stats.totalEventsCount}
+        color="#28a745"
+      />
+      <StatCard
         title="Aktif Etkinlik"
         value={stats.activeEventsCount}
         color="#ffc107"
