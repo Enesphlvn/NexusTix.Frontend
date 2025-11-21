@@ -58,12 +58,7 @@ const EventDetail = ({
                 <>
                   {soldCount} / {event.capacity} Satıldı
                   <br />
-                  <span
-                    style={{
-                      fontSize: "0.9rem",
-                      color: remainingTickets < 10 ? "red" : "green",
-                    }}
-                  >
+                  <span className={remainingTickets < 10 ? styles.lowStock : styles.highStock}>
                     ({remainingTickets} bilet kaldı)
                   </span>
                 </>

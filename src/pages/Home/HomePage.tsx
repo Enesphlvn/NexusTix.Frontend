@@ -42,8 +42,7 @@ const HomePage = () => {
         <div className={heroStyles.content}>
           <h1 className={heroStyles.title}>Hayatın Ritmini Yakala!</h1>
           <p className={heroStyles.subtitle}>
-            Konserlerden tiyatrolara, şehrindeki en iyi etkinlikleri keşfetmeye
-            başla.
+            Konserlerden tiyatrolara, şehrindeki en iyi etkinlikleri keşfet.
           </p>
         </div>
 

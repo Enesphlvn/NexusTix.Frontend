@@ -1,6 +1,6 @@
 import type { EventAdminResponse } from "../../../models/Event/Responses/EventAdminResponse";
 import AdminEventRow from "./AdminEventRow";
-import styles from "../Common/AdminList.module.css";
+import styles from "./AdminEventList.module.css";
 
 interface AdminEventListProps {
   events: EventAdminResponse[];
@@ -27,6 +27,7 @@ const AdminEventList = ({ events, onDelete }: AdminEventListProps) => {
             <th className={styles.headerActions}>İşlemler</th>
           </tr>
         </thead>
+
         <tbody>
           {events.map((event) => (
             <AdminEventRow key={event.id} event={event} onDelete={onDelete} />

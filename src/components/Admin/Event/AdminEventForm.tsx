@@ -20,7 +20,7 @@ interface AdminEventFormProps {
 
   venues: VenueResponse[];
   eventTypes: EventTypeResponse[];
-
+  
   loading: boolean;
   isEditMode: boolean;
 

@@ -1,97 +1,116 @@
 .row {
-  border-bottom: 1px solid #eee;
-  transition: background-color 0.2s;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f1f1f4;
+  transition: all 0.2s ease-in-out;
 }
 
 .row:hover {
-  background-color: #f8f9fa;
+  background-color: #f9f9fc;
+  transform: scale(1.002);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  z-index: 1;
+  position: relative;
 }
 
 .cell {
-  padding: 1rem;
-  color: #495057;
+  padding: 1.25rem 1.5rem;
   vertical-align: middle;
+  color: #5e6278;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .idCell {
-  font-weight: bold;
-  color: #6c757d;
+  font-family: "Courier New", monospace;
+  color: #b5b5c3;
+  font-weight: 600;
+  font-size: 0.85rem;
 }
 
 .nameCell {
-  font-weight: 600;
-  color: #212529;
+  color: #181c32;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .emailCell {
-  color: #007bff;
-}
-
-.badge {
-  display: inline-block;
-  padding: 0.35em 0.65em;
-  font-size: 0.75em;
-  font-weight: 700;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: 0.25rem;
-}
-
-.activeBadge {
-  background-color: #28a745;
-}
-
-.passiveBadge {
-  background-color: #6c757d;
+  color: #009ef7;
+  font-weight: 500;
 }
 
 .roleSelect {
-  padding: 0.4rem 2rem 0.4rem 0.8rem;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  color: #495057;
-  background-color: #fff;
+  padding: 0.5rem 2rem 0.5rem 0.8rem;
+  border: 1px solid #e4e6ef;
+  border-radius: 6px;
+  background-color: #f5f8fa;
+  color: #5e6278;
+  font-weight: 600;
+  font-size: 0.85rem;
   cursor: pointer;
   outline: none;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235e6278' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  background-size: 1em;
 }
 
 .roleSelect:focus {
-  border-color: #80bdff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: #009ef7;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(0, 158, 247, 0.1);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.activeBadge {
+  background-color: #e8fff3;
+  color: #50cd89;
+}
+
+.passiveBadge {
+  background-color: #fff5f8;
+  color: #f1416c;
+}
+
+.deleteButton,
+.activateButton {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .deleteButton {
-  padding: 0.5rem 1rem;
-  background: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: background-color 0.2s;
+  background-color: #ffe2e5;
+  color: #f64e60;
 }
-
 .deleteButton:hover {
-  background-color: #c82333;
+  background-color: #f64e60;
+  color: #ffffff;
 }
 
 .activateButton {
-  padding: 0.5rem 1rem;
-  background: #28a745;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: background-color 0.2s;
+  background-color: #e8fff3;
+  color: #50cd89;
 }
-
 .activateButton:hover {
-  background-color: #218838;
+  background-color: #50cd89;
+  color: #ffffff;
 }

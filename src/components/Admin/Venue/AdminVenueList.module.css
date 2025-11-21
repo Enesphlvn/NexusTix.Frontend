@@ -1,0 +1,67 @@
+.tableWrapper {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+.tableWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+  text-align: left;
+}
+
+.headerRow {
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.headerCell {
+  padding: 1.2rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+}
+
+.headerActions {
+  composes: headerCell;
+  text-align: right;
+  padding-right: 2rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 6rem 2rem;
+  background-color: #ffffff;
+  border-radius: 20px;
+  border: 2px dashed #e5e7eb;
+  color: #9ca3af;
+  font-size: 1.1rem;
+  font-weight: 500;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.emptyState::before {
+  content: "📍";
+  font-size: 3.5rem;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+  filter: grayscale(100%);
+}

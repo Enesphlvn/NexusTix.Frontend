@@ -1,11 +1,11 @@
 import type { UserAdminResponse } from "../../../models/User/Responses/UserAdminResponse";
 import AdminUserRow from "./AdminUserRow";
-import styles from "../Common/AdminList.module.css";
+import styles from "./AdminUserList.module.css";
 
 interface AdminUserListProps {
   users: UserAdminResponse[];
   onRoleChange: (id: number, newRole: string) => void;
-  onPassive: (id: number) => void;
+  onPassive: (id: number, isActive: boolean) => void;
 }
 
 const AdminUserList = ({
