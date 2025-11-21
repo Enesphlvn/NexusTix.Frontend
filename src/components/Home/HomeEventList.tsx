@@ -10,10 +10,15 @@ const HomeEventList = ({ events }: HomeEventListProps) => {
   if (events.length === 0) {
     return (
       <div className={styles.noEvents}>
-        <div className={styles.noEventsTitle}>Sonuç Bulunamadı 😔</div>
+        <div className={styles.icon}>🔍</div>
+        
+        <div className={styles.noEventsTitle}>
+          Aradığınız Kriterlere Uygun Etkinlik Yok
+        </div>
+        
         <div className={styles.noEventsText}>
-          Seçtiğiniz filtrelere uygun bir etkinlik bulamadık. Lütfen farklı bir
-          şehir veya tarih seçmeyi deneyin.
+          Filtrelerinizi değiştirerek veya temizleyerek tekrar aramayı deneyin. 
+          Şehrinizdeki en popüler etkinlikleri kaçırmayın!
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { VenueResponse } from "../../../models/Venue/Responses/VenueResponse";
 import styles from "./AdminVenueRow.module.css";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 interface AdminVenueRowProps {
   venue: VenueResponse;
@@ -24,14 +25,14 @@ const AdminVenueRow = ({ venue, onDelete }: AdminVenueRowProps) => {
             to={`/admin/venues/edit/${venue.id}`}
             className={styles.editButton}
           >
-            Düzenle
+            <FaEdit /> Düzenle
           </Link>
 
           <button
             onClick={() => onDelete(venue.id)}
             className={styles.deleteButton}
           >
-            Sil
+            <FaTrash /> Sil
           </button>
         </div>
       </td>

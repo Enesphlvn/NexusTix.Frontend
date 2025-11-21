@@ -1,8 +1,8 @@
 import { useMyTickets } from "../../hooks/Ticket/useMyTickets";
-import styles from "../../components/Ticket/TicketList.module.css";
 import LoadingSpinner from "../../components/Common/LoadingSpinner";
 import ErrorMessage from "../../components/Common/ErrorMessage";
 import TicketList from "../../components/Ticket/TicketList";
+import styles from "./MyTicketsPage.module.css";
 
 const MyTicketsPage = () => {
   const { tickets, loading, error, refetch } = useMyTickets();

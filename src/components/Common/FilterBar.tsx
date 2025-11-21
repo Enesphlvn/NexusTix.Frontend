@@ -3,6 +3,7 @@ import type { CityResponse } from "../../models/City/Responses/CityResponse";
 import type { EventTypeResponse } from "../../models/EventType/Responses/EventTypeResponse";
 import styles from "./FilterBar.module.css";
 import type { DistrictResponse } from "../../models/District/DistrictResponse";
+import { FaSearch } from "react-icons/fa";
 
 interface FilterBarProps {
   cities: CityResponse[];
@@ -109,7 +110,7 @@ const FilterBar = ({
       <div className={styles.formGroup}>
         <label>&nbsp;</label>
         <button type="submit" className={styles.submitButton}>
-          Ara
+          <FaSearch size={20} />
         </button>
       </div>
     </form>

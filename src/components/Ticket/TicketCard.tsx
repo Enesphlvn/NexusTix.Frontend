@@ -24,16 +24,20 @@ const TicketCard = ({ ticket, onRefresh }: TicketCardProps) => {
   });
 
   let statusClass = styles.active;
+  let cardModClass = "";
   let statusText = "Aktif Bilet";
 
   if (ticket.isCancelled) {
     statusClass = styles.cancelled;
+    cardModClass = styles.cardCancelled;
     statusText = "İPTAL EDİLDİ";
   } else if (ticket.isUsed) {
     statusClass = styles.used;
+    cardModClass = styles.cardUsed;
     statusText = "KULLANILDI";
   } else if (isExpired) {
     statusClass = styles.expired;
+    cardModClass = styles.cardExpired;
     statusText = "SÜRESİ DOLDU";
   }
 
@@ -67,38 +71,44 @@ const TicketCard = ({ ticket, onRefresh }: TicketCardProps) => {
   };
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${cardModClass}`}>
       <div className={styles.infoSection}>
-        <h2 className={styles.eventName}>{ticket.eventName}</h2>
-        <p className={styles.venueInfo}>
-          📍 {ticket.venueName}, {ticket.cityName}
-        </p>
-        <p className={styles.eventDate}>📅 {formattedDate}</p>
-
-        <div className={`${styles.statusBadge} ${statusClass}`}>
-          {statusText}
+        <div className={styles.headerGroup}>
+          <h2 className={styles.eventName}>{ticket.eventName}</h2>
+          <p className={styles.venueInfo}>
+            📍 {ticket.venueName}, {ticket.cityName}
+          </p>
         </div>
 
-        {!ticket.isUsed && !ticket.isCancelled && !isExpired && (
-          <button className={styles.cancelButton} onClick={handleCancelClick}>
-            Bileti İptal Et
-          </button>
-        )}
+        <div className={styles.dateGroup}>
+          <span className={styles.dateIcon}>📅</span>
+          <span className={styles.dateText}>{formattedDate}</span>
+        </div>
+
+        <div className={styles.footer}>
+          <div className={`${styles.statusBadge} ${statusClass}`}>
+            {statusText}
+          </div>
+
+          {!ticket.isUsed && !ticket.isCancelled && !isExpired && (
+            <button className={styles.cancelButton} onClick={handleCancelClick}>
+              İptal Et
+            </button>
+          )}
+        </div>
       </div>
 
       <div className={styles.qrSection}>
+        <div className={styles.notchTop}></div>
+        <div className={styles.notchBottom}></div>
+
         {ticket.isCancelled || ticket.isUsed || isExpired ? (
-          <div style={{ textAlign: "center", color: "#999" }}>
-            <span style={{ fontSize: "2rem" }}>🚫</span>
-            <p style={{ margin: 0, fontSize: "0.8rem" }}>
-              {ticket.isCancelled ? "İptal Edildi"
-                : ticket.isUsed ? "Kullanıldı"
-                : isExpired ? "Süresi Doldu"
-                : "Geçersiz"}
-            </p>
+          <div className={styles.invalidState}>
+            <div className={styles.invalidIcon}>🚫</div>
+            <p className={styles.invalidText}>Geçersiz</p>
           </div>
         ) : (
-          <QRCodeSVG value={ticket.qrCodeGuid} size={100} level={"H"} />
+          <QRCodeSVG value={ticket.qrCodeGuid} size={110} level={"H"} />
         )}
       </div>
     </div>

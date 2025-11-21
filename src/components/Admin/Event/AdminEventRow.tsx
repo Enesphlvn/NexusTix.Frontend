@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { EventAdminResponse } from "../../../models/Event/Responses/EventAdminResponse";
 import styles from "./AdminEventRow.module.css";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 interface AdminEventRowProps {
   event: EventAdminResponse;
@@ -37,14 +38,14 @@ const AdminEventRow = ({ event, onDelete }: AdminEventRowProps) => {
             to={`/admin/events/edit/${event.id}`}
             className={styles.editButton}
           >
-            Düzenle
+            <FaEdit /> Düzenle
           </Link>
 
           <button
             onClick={() => onDelete(event.id)}
             className={styles.deleteButton}
           >
-            Sil
+            <FaTrash /> Sil
           </button>
         </div>
       </td>
