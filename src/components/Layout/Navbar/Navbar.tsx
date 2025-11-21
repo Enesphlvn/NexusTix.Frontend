@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
+  const isAdmin = user?.roles?.includes("Admin");
 
   const handleLogout = () => {
     logout();
@@ -35,6 +36,16 @@ const Navbar = () => {
 
         {isAuthenticated ? (
           <>
+            {isAdmin && (
+              <Link
+                to="/admin/dashboard"
+                className={styles.navLink}
+                style={{ color: "#dc3545", fontWeight: "bold" }}
+              >
+                Yönetim Paneli
+              </Link>
+            )}
+
             <span className={styles.navLink}>
               <Link
                 to="/profile"
