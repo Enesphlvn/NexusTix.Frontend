@@ -4,6 +4,7 @@ import ErrorMessage from "../../../components/Common/ErrorMessage";
 import LoadingSpinner from "../../../components/Common/LoadingSpinner";
 import { useDashboard } from "../../../hooks/Dashboard/useDashboard";
 import { useDashboardCharts } from "../../../hooks/Dashboard/useDashboardCharts";
+import styles from "./DashboardPage.module.css";
 
 const DashboardPage = () => {
   const { stats, loading: statsLoading, error: statsError } = useDashboard();
@@ -18,8 +19,8 @@ const DashboardPage = () => {
   if (!stats) return <ErrorMessage message="Veri bulunamadı." />;
 
   return (
-    <div style={{ padding: "1rem" }}>
-      <h1 style={{ marginBottom: "2rem", color: "#333" }}>Genel Bakış</h1>
+    <div className={styles.container}>
+      <h1 className={styles.header}>Genel Bakış</h1>
 
       <DashboardStats stats={stats} />
 

@@ -21,21 +21,25 @@ const DashboardStats = ({ stats }: DashboardStatsProps) => {
         value={formatCurrency(stats.totalRevenue)}
         color="#28a745"
       />
+
       <StatCard
         title="Satılan Bilet"
         value={stats.totalTicketsSold}
         color="#007bff"
       />
+
       <StatCard
         title="Toplam Etkinlik"
         value={stats.totalEventsCount}
-        color="#28a745"
+        color="#6610f2"
       />
+
       <StatCard
         title="Aktif Etkinlik"
         value={stats.activeEventsCount}
         color="#ffc107"
       />
+
       <StatCard
         title="Toplam Üye"
         value={stats.totalUsersCount}

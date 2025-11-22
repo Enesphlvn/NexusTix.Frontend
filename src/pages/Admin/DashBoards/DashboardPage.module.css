@@ -1,0 +1,43 @@
+.container {
+  padding-bottom: 3rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 32px;
+  background: linear-gradient(to bottom, #3b82f6, #2563eb);
+  border-radius: 4px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+}

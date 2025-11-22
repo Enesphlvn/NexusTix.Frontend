@@ -1,8 +1,8 @@
 import type { DashboardChartResponse } from "../../../models/Dashboard/Responses/DashboardChartResponse";
 import ErrorMessage from "../../Common/ErrorMessage";
 import LoadingSpinner from "../../Common/LoadingSpinner";
-import styles from "./DashboardCharts.module.css";
 import RevenueChart from "./RevenueChart";
+import styles from "./DashboardCharts.module.css";
 
 interface DashboardChartsProps {
   data: DashboardChartResponse | null;
@@ -31,24 +31,36 @@ const DashboardCharts = ({ data, loading, error }: DashboardChartsProps) => {
       {data && <RevenueChart data={data.monthlyRevenues} />}
 
       <div className={styles.sidePanel}>
-        <h3 className={styles.sidePanelTitle}>Hızlı Durum</h3>
-        <div style={{ color: "#666", fontSize: "0.9rem", lineHeight: "1.6" }}>
-          <p>
-            ✅ Sistem durumu: <strong>Aktif</strong>
-          </p>
-          <p>
-            📅 Güncelleme: <strong>{new Date().toLocaleDateString()}</strong>
-          </p>
-          <hr
-            style={{
-              margin: "1rem 0",
-              border: "0",
-              borderTop: "1px solid #eee",
-            }}
-          />
-          <p style={{ fontStyle: "italic", color: "#999" }}>
-            Kategori bazlı satış dağılım grafiği (Pie Chart) çok yakında...
-          </p>
+        <h3 className={styles.sidePanelTitle}>Sistem Durumu</h3>
+
+        <div className={styles.statusList}>
+          <div className={styles.statusItem}>
+            <span className={styles.statusIcon}>✅</span>
+            <span>
+              API Bağlantısı: <strong>Aktif</strong>
+            </span>
+          </div>
+
+          <div className={styles.statusItem}>
+            <span className={styles.statusIcon}>📅</span>
+            <span>
+              Son Güncelleme: <strong>{new Date().toLocaleDateString()}</strong>
+            </span>
+          </div>
+
+          <div className={styles.statusItem}>
+            <span className={styles.statusIcon}>🔐</span>
+            <span>
+              Güvenlik: <strong>JWT + SSL</strong>
+            </span>
+          </div>
+        </div>
+
+        <hr className={styles.separator} />
+
+        <div className={styles.comingSoon}>
+          🚀 Kategori bazlı satış dağılım grafiği (Pie Chart) ve detaylı
+          raporlama modülü çok yakında eklenecek...
         </div>
       </div>
     </div>
