@@ -1,5 +1,5 @@
 import type { EventTypeResponse } from "../../EventType/Responses/EventTypeResponse";
-import type { VenueResponse } from "../../Venue/Responses/VenueResponse";
+import type { VenueWithLocationResponse } from "../../Venue/Responses/VenueWithLocationResponse";
 
 export interface EventAggregateResponse {
   id: number;
@@ -8,7 +8,6 @@ export interface EventAggregateResponse {
   price: number;
   description: string | null;
   capacity: number;
-
   eventType: EventTypeResponse;
-  venue: VenueResponse;
+  venue: VenueWithLocationResponse;
 }

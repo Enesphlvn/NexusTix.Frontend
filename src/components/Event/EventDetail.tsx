@@ -1,3 +1,4 @@
+import { FaClock, FaMapMarkerAlt } from "react-icons/fa";
 import type { EventAggregateResponse } from "../../models/Event/Responses/EventAggregateResponse";
 import styles from "./EventDetail.module.css";
 
@@ -25,11 +26,15 @@ const EventDetail = ({
 
   const remainingTickets = event.capacity - (soldCount ?? 0);
 
+  const isLowStock = remainingTickets > 0 && remainingTickets < 100;
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>{event.name}</h1>
-        <div className={styles.date}>{formattedDate}</div>
+        <div className={styles.headerContent}>
+          <h1 className={styles.title}>{event.name}</h1>
+          <div className={styles.dateBadge}>📅 {formattedDate}</div>
+        </div>
       </div>
 
       <div className={styles.content}>
@@ -47,8 +52,15 @@ const EventDetail = ({
           </div>
 
           <div className={styles.infoItem}>
-            <span className={styles.label}>Mekan</span>
+            <span className={styles.label}>Mekan & Konum</span>
             <span className={styles.value}>{event.venue.name}</span>
+
+            <div className={styles.locationInfo}>
+              <FaMapMarkerAlt className={styles.locationIcon} />
+              <span>
+                {event.venue.districtName}, {event.venue.cityName}
+              </span>
+            </div>
           </div>
 
           <div className={styles.infoItem}>
@@ -57,10 +69,12 @@ const EventDetail = ({
               {soldCount !== null ? (
                 <>
                   {soldCount} / {event.capacity} Satıldı
-                  <br />
-                  <span className={remainingTickets < 10 ? styles.lowStock : styles.highStock}>
-                    ({remainingTickets} bilet kaldı)
-                  </span>
+                  {isLowStock && (
+                    <div className={styles.stockWarning}>
+                      <FaClock />
+                      <span>Tükenmek Üzere!</span>
+                    </div>
+                  )}
                 </>
               ) : (
                 "Yükleniyor..."

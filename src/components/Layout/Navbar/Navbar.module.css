@@ -11,11 +11,28 @@
   z-index: 1000;
 }
 
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
 .logo {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #007bff;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  transform: scale(3.2);
+  transform-origin: left center;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover .logoImage {
+  transform: scale(3.3);
 }
 
 .navLinks {

@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import type { EventResponse } from "../../models/Event/Responses/EventResponse";
 import { getFilteredEvents } from "../../api/Event/eventService";
 import type { EventFiltersRequest } from "../../models/Event/Requests/EventFiltersRequest";
+import type { EventListResponse } from "../../models/Event/Responses/EventListResponse";
 
 export const useEvents = (filters: EventFiltersRequest) => {
-  const [events, setEvents] = useState<EventResponse[]>([]);
+  const [events, setEvents] = useState<EventListResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 

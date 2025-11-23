@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { useAuth } from "../../../context/AuthContext";
 import { toast } from "react-toastify";
+import logoImage from '../../../assets/logo.png';
 
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -23,7 +24,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
         <Link to="/" className={styles.logo}>
-          NexusTix
+          <img src={logoImage} alt="NexusTix Logo" className={styles.logoImage}/>
         </Link>
       </div>
 

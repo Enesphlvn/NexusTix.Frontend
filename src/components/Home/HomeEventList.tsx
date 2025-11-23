@@ -1,9 +1,9 @@
-import type { EventResponse } from "../../models/Event/Responses/EventResponse";
+import type { EventListResponse } from "../../models/Event/Responses/EventListResponse";
 import EventCard from "../Event/EventCard";
 import styles from "./HomeEventList.module.css";
 
 interface HomeEventListProps {
-  events: EventResponse[];
+  events: EventListResponse[];
 }
 
 const HomeEventList = ({ events }: HomeEventListProps) => {

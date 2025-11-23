@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import type { EventResponse } from "../../models/Event/Responses/EventResponse";
 import styles from "./EventCard.module.css";
+import { FaArrowRight, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+import type { EventListResponse } from "../../models/Event/Responses/EventListResponse";
 
 interface EventCardProps {
-  event: EventResponse;
+  event: EventListResponse;
 }
 
 const EventCard = ({ event }: EventCardProps) => {
@@ -17,12 +18,41 @@ const EventCard = ({ event }: EventCardProps) => {
     minute: "numeric",
   });
 
+  const handleNavigate = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    navigate(`/events/${event.id}`);
+  };
+
   return (
-    <div className={styles.card} onClick={() => navigate(`/events/${event.id}`)}>
+    <div className={styles.card} onClick={handleNavigate}>
+      <div className={styles.categoryBadge}>{event.eventTypeName}</div>
+
       <div className={styles.cardContent}>
-        <h3 className={styles.cardTitle}>{event.name}</h3>
-        <p className={styles.cardDate}>{eventDate}</p>
-        <p className={styles.cardPrice}>{event.price} TL</p>
+        <div className={styles.infoGroup}>
+          <h3 className={styles.cardTitle}>{event.name}</h3>
+
+          <div className={styles.metaInfo}>
+            <div className={styles.infoItem}>
+              <FaMapMarkerAlt className={styles.infoIcon} />
+              <span className={styles.venueText}>
+                {event.venueName}, {event.districtName} / {event.cityName}
+              </span>
+            </div>
+
+            <div className={styles.infoItem}>
+              <FaCalendarAlt className={styles.infoIcon} />
+              <span>{eventDate}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.cardFooter}>
+          <p className={styles.cardPrice}>{event.price} TL</p>
+
+          <button className={styles.detailButton} onClick={handleNavigate}>
+            İncele <FaArrowRight />
+          </button>
+        </div>
       </div>
     </div>
   );
