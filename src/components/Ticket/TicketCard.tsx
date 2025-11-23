@@ -4,6 +4,7 @@ import styles from "./TicketCard.module.css";
 import Swal from "sweetalert2";
 import { cancelTicket } from "../../api/Ticket/ticketService";
 import { toast } from "react-toastify";
+import { FaBan, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 interface TicketCardProps {
   ticket: TicketByUserResponse;
@@ -76,13 +77,19 @@ const TicketCard = ({ ticket, onRefresh }: TicketCardProps) => {
         <div className={styles.headerGroup}>
           <h2 className={styles.eventName}>{ticket.eventName}</h2>
           <p className={styles.venueInfo}>
-            📍 {ticket.venueName}, {ticket.cityName}
+            <FaMapMarkerAlt className={styles.infoIcon} style={{ marginRight: "0.5rem" }}/>
+            {ticket.venueName}, {ticket.cityName}
           </p>
         </div>
 
         <div className={styles.dateGroup}>
-          <span className={styles.dateIcon}>📅</span>
-          <span className={styles.dateText}>{formattedDate}</span>
+          <span className={styles.dateIcon}>
+            <FaCalendarAlt
+              className={styles.infoIcon}
+              style={{ marginRight: "0.5rem" }}
+            />
+            {formattedDate}
+          </span>
         </div>
 
         <div className={styles.footer}>
@@ -104,8 +111,18 @@ const TicketCard = ({ ticket, onRefresh }: TicketCardProps) => {
 
         {ticket.isCancelled || ticket.isUsed || isExpired ? (
           <div className={styles.invalidState}>
-            <div className={styles.invalidIcon}>🚫</div>
-            <p className={styles.invalidText}>Geçersiz</p>
+            <div className={styles.invalidIcon}>
+              <FaBan />
+            </div>
+            <p className={styles.invalidText}>
+              {ticket.isCancelled
+                ? "İptal Edildi"
+                : ticket.isUsed
+                ? "Kullanıldı"
+                : isExpired
+                ? "Süresi Doldu"
+                : "Geçersiz"}
+            </p>
           </div>
         ) : (
           <QRCodeSVG value={ticket.qrCodeGuid} size={110} level={"H"} />

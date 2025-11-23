@@ -56,6 +56,17 @@
   border-left-color: #3699ff !important;
 }
 
+.menuIcon {
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.menuItem a:hover .menuIcon, 
+.activeLink .menuIcon {
+  opacity: 1;
+}
+
 .footer {
   padding: 1.5rem;
   border-top: 1px solid #2b2b40;

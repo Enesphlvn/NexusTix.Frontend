@@ -60,23 +60,6 @@
   font-size: 1.2rem;
 }
 
-.separator {
-  margin: 1.5rem 0;
-  border: 0;
-  border-top: 1px dashed #e4e6ef;
-}
-
-.comingSoon {
-  font-style: italic;
-  color: #a1a5b7;
-  font-size: 0.9rem;
-  text-align: center;
-  margin-top: auto;
-  padding: 1rem;
-  background-color: #f9f9fc;
-  border-radius: 8px;
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;

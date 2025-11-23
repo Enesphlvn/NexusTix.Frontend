@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import styles from "./AdminSidebar.module.css";
+import { FaArrowLeft, FaCalendarAlt, FaChartPie, FaMapMarkerAlt, FaUsers } from "react-icons/fa";
 
 const AdminSidebar = () => {
   const location = useLocation();
@@ -16,29 +17,29 @@ const AdminSidebar = () => {
       <ul className={styles.menu}>
         <li className={styles.menuItem}>
           <Link to="/admin/dashboard" className={isActive("/admin/dashboard")}>
-            📊 Dashboard
+            <FaChartPie className={styles.menuIcon} /> Dashboard
           </Link>
         </li>
         <li className={styles.menuItem}>
           <Link to="/admin/events" className={isActive("/admin/events")}>
-            📅 Etkinlik Yönetimi
+            <FaCalendarAlt className={styles.menuIcon} /> Etkinlik Yönetimi
           </Link>
         </li>
         <li className={styles.menuItem}>
           <Link to="/admin/venues" className={isActive("/admin/venues")}>
-            📍 Mekan Yönetimi
+            <FaMapMarkerAlt className={styles.menuIcon} /> Mekan Yönetimi
           </Link>
         </li>
         <li className={styles.menuItem}>
           <Link to="/admin/users" className={isActive("/admin/users")}>
-            👥 Kullanıcılar
+            <FaUsers className={styles.menuIcon} /> Kullanıcılar
           </Link>
         </li>
       </ul>
 
       <div className={styles.footer}>
         <Link to="/" className={styles.backButton}>
-          ← Siteye Dön
+          <FaArrowLeft style={{ marginRight: "0.5rem" }} /> Siteye Dön
         </Link>
       </div>
     </aside>

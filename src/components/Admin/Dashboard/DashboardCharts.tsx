@@ -3,6 +3,7 @@ import ErrorMessage from "../../Common/ErrorMessage";
 import LoadingSpinner from "../../Common/LoadingSpinner";
 import RevenueChart from "./RevenueChart";
 import styles from "./DashboardCharts.module.css";
+import { FaCheckCircle, FaClock, FaLock } from "react-icons/fa";
 
 interface DashboardChartsProps {
   data: DashboardChartResponse | null;
@@ -35,32 +36,31 @@ const DashboardCharts = ({ data, loading, error }: DashboardChartsProps) => {
 
         <div className={styles.statusList}>
           <div className={styles.statusItem}>
-            <span className={styles.statusIcon}>✅</span>
+            <span className={styles.statusIcon} style={{ color: "#28a745" }}>
+              <FaCheckCircle />
+            </span>
             <span>
               API Bağlantısı: <strong>Aktif</strong>
             </span>
           </div>
 
           <div className={styles.statusItem}>
-            <span className={styles.statusIcon}>📅</span>
+            <span className={styles.statusIcon} style={{ color: "#007bff" }}>
+              <FaClock />
+            </span>
             <span>
               Son Güncelleme: <strong>{new Date().toLocaleDateString()}</strong>
             </span>
           </div>
 
           <div className={styles.statusItem}>
-            <span className={styles.statusIcon}>🔐</span>
+            <span className={styles.statusIcon} style={{ color: "#ffc107" }}>
+              <FaLock />
+            </span>
             <span>
               Güvenlik: <strong>JWT + SSL</strong>
             </span>
           </div>
-        </div>
-
-        <hr className={styles.separator} />
-
-        <div className={styles.comingSoon}>
-          🚀 Kategori bazlı satış dağılım grafiği (Pie Chart) ve detaylı
-          raporlama modülü çok yakında eklenecek...
         </div>
       </div>
     </div>
