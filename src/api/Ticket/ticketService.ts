@@ -1,4 +1,5 @@
 import type { ServiceResult } from "../../models/ServiceResult";
+import type { CheckInTicketRequest } from "../../models/Ticket/Requests/CheckInTicketRequest";
 import type { CreateTicketRequest } from "../../models/Ticket/Requests/CreateTicketRequest";
 import type { TicketByUserResponse } from "../../models/Ticket/Responses/TicketByUserResponse";
 import type { TicketResponse } from "../../models/Ticket/Responses/TicketResponse";
@@ -52,3 +53,11 @@ export const cancelTicket = async (ticketId: number): Promise<void> => {
 
   if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 };
+
+export const checkInTicket = async (qrCodeGuid: string): Promise<void> => {
+  const request: CheckInTicketRequest = { qrCodeGuid };
+
+  const response = await api.put<ServiceResult<null>>('/tickets/checkin', request);
+
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", ")); 
+}
