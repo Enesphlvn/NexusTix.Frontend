@@ -1,6 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import styles from "./AdminSidebar.module.css";
-import { FaArrowLeft, FaCalendarAlt, FaChartPie, FaMapMarkerAlt, FaUsers } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaCalendarAlt,
+  FaChartPie,
+  FaMapMarkerAlt,
+  FaQrcode,
+  FaUsers,
+} from "react-icons/fa";
 
 const AdminSidebar = () => {
   const location = useLocation();
@@ -33,6 +40,11 @@ const AdminSidebar = () => {
         <li className={styles.menuItem}>
           <Link to="/admin/users" className={isActive("/admin/users")}>
             <FaUsers className={styles.menuIcon} /> Kullanıcılar
+          </Link>
+        </li>
+        <li className={styles.menuItem}>
+          <Link to="/admin/checkin" className={isActive("/admin/checkin")}>
+            <FaQrcode className={styles.menuIcon} /> Check In
           </Link>
         </li>
       </ul>

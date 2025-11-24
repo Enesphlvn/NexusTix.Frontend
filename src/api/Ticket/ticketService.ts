@@ -54,8 +54,8 @@ export const cancelTicket = async (ticketId: number): Promise<void> => {
   if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 };
 
-export const checkInTicket = async (qrCodeGuid: string): Promise<void> => {
-  const request: CheckInTicketRequest = { qrCodeGuid };
+export const checkInTicket = async (qrCodeGuid: string, eventId: number): Promise<void> => {
+  const request: CheckInTicketRequest = { qrCodeGuid, eventId };
 
   const response = await api.put<ServiceResult<null>>('/tickets/checkin', request);
 

@@ -16,6 +16,7 @@ import AdminVenueFormPage from "../pages/Admin/Venues/AdminVenueFormPage";
 import AdminVenuesPage from "../pages/Admin/Venues/AdminVenuesPage";
 import AdminUsersPage from "../pages/Admin/Users/AdminUsersPage";
 import DashboardPage from "../pages/Admin/DashBoards/DashboardPage";
+import AdminCheckInPage from "../pages/Admin/Tickets/AdminCheckInPage";
 
 export const AppRouter = () => {
   return (
@@ -49,6 +50,7 @@ export const AppRouter = () => {
             <Route path="venues/edit/:id" element={<AdminVenueFormPage />} />
 
             <Route path="users" element={<AdminUsersPage />} />
+            <Route path="checkin" element={<AdminCheckInPage />} />
           </Route>
         </Route>
       </Routes>
