@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { useAuth } from "../../../hooks/Auth/useAuth";
-import { toast } from "react-toastify";
 import logoImage from '../../../assets/logo.png';
 
 const Navbar = () => {
@@ -11,11 +10,6 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-
-    toast.info("Başarıyla çıkış yapıldı.", {
-      position: "top-right",
-      autoClose: 2000,
-    });
 
     navigate("/");
   };
