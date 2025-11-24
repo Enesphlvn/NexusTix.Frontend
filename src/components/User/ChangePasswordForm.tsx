@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/Auth/useAuth";
 import { toast } from "react-toastify";
 import { updatePassword } from "../../api/Auth/authService";
 import styles from "./FormStyles.module.css";

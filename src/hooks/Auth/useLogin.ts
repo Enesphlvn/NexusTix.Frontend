@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "./useAuth";
 import { useState, type FormEvent } from "react";
 import type { LoginRequest } from "../../models/Auth/Requests/LoginRequest";
 

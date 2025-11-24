@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../Auth/useAuth";
 import type { EventAggregateResponse } from "../../models/Event/Responses/EventAggregateResponse";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";

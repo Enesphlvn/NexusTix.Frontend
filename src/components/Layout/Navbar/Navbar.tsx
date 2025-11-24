@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../../hooks/Auth/useAuth";
 import { toast } from "react-toastify";
 import logoImage from '../../../assets/logo.png';
 

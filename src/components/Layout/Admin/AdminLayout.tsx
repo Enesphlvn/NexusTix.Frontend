@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../../hooks/Auth/useAuth";
 import styles from "./AdminLayout.module.css";
 import AdminSidebar from "./AdminSidebar";
 import { ToastContainer } from "react-toastify";

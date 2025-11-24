@@ -2,12 +2,13 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { AppRouter } from "./router/AppRouter";
-import { AuthProvider } from "./context/AuthContext";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AuthProvider>
+    <Provider store={store}>
       <AppRouter />
-    </AuthProvider>
+    </Provider>
   </StrictMode>
 );
