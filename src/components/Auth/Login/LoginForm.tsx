@@ -62,6 +62,12 @@ const LoginForm = ({
         <div className={styles.switchLink}>
           Hesabınız yok mu? <Link to="/register">Kayıt Ol</Link>
         </div>
+
+        <div style={{ textAlign: "center", marginTop: "1rem" }}>
+          <Link to="/forgot-password" className={styles.forgotPasswordLink}>
+            Şifrenizi mi unuttunuz?
+          </Link>
+        </div>
       </form>
     </div>
   );

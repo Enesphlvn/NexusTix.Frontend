@@ -17,6 +17,8 @@ import AdminVenuesPage from "../pages/Admin/Venues/AdminVenuesPage";
 import AdminUsersPage from "../pages/Admin/Users/AdminUsersPage";
 import DashboardPage from "../pages/Admin/DashBoards/DashboardPage";
 import AdminCheckInPage from "../pages/Admin/Tickets/AdminCheckInPage";
+import ForgotPasswordPage from "../pages/Auth/ForgotPasswordPage";
+import ResetPasswordPage from "../pages/Auth/ResetPasswordPage";
 
 export const AppRouter = () => {
   return (
@@ -27,6 +29,8 @@ export const AppRouter = () => {
           <Route path="events/:id" element={<EventDetailPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
+          <Route path="forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="reset-password" element={<ResetPasswordPage />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="my-tickets" element={<MyTicketsPage />} />

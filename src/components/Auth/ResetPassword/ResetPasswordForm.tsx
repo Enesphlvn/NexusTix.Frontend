@@ -1,3 +1,4 @@
+import { FaKey } from "react-icons/fa";
 import styles from "./ResetPasswordForm.module.css";
 
 interface ResetPasswordFormProps {
@@ -6,26 +7,40 @@ interface ResetPasswordFormProps {
   confirmPassword: string;
   setConfirmPassword: (val: string) => void;
   loading: boolean;
+  error: string | null;
   handleSubmit: (e: React.FormEvent) => void;
 }
- 
+
 const ResetPasswordForm = ({
   newPassword,
   setNewPassword,
   confirmPassword,
   setConfirmPassword,
   loading,
+  error,
   handleSubmit,
 }: ResetPasswordFormProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.formCard}>
-        <h1 className={styles.title}>Yeni Şifre Belirle 🔑</h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "1rem",
+            color: "#28a745",
+            fontSize: "2rem",
+          }}
+        >
+          <FaKey />
+        </div>
+        <h1 className={styles.title}>Yeni Şifre Belirle</h1>
         <p className={styles.description}>
           Lütfen hesabınız için yeni ve güçlü bir şifre belirleyiniz.
         </p>
 
         <form onSubmit={handleSubmit}>
+          {error && <div className={styles.errorMessage}>{error}</div>}
           <div className={styles.formGroup}>
             <label>Yeni Şifre</label>
             <input

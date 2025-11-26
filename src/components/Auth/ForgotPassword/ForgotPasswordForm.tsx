@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./ForgotPasswordForm.module.css";
+import { FaArrowLeft, FaLock } from "react-icons/fa";
 
 interface ForgotPasswordFormProps {
   email: string;
   setEmail: (val: string) => void;
   loading: boolean;
+  error: string | null;
   handleSubmit: (e: React.FormEvent) => void;
 }
 
@@ -12,18 +14,30 @@ const ForgotPasswordForm = ({
   email,
   setEmail,
   loading,
+  error,
   handleSubmit,
 }: ForgotPasswordFormProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.formCard}>
-        <h1 className={styles.title}>Şifremi Unuttum 🔒</h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "1rem",
+            color: "#007bff",
+            fontSize: "2rem",
+          }}
+        >
+          <FaLock />
+        </div>
+        <h1 className={styles.title}>Şifremi Unuttum</h1>
         <p className={styles.description}>
-          Lütfen hesabınıza kayıtlı e-posta adresini giriniz. Size şifrenizi
-          sıfırlamanız için bir bağlantı göndereceğiz.
+          Lütfen hesabınıza kayıtlı e-posta adresini giriniz.
         </p>
 
         <form onSubmit={handleSubmit}>
+          {error && <div className={styles.errorMessage}>{error}</div>}
           <div className={styles.formGroup}>
             <label>E-posta Adresi</label>
             <input
@@ -43,7 +57,7 @@ const ForgotPasswordForm = ({
         </form>
 
         <Link to="/login" className={styles.backLink}>
-          ← Giriş Ekranına Dön
+          <FaArrowLeft style={{ marginRight: "5px" }} /> Giriş Ekranına Dön
         </Link>
       </div>
     </div>

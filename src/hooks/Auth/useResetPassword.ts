@@ -13,12 +13,14 @@ export const useResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setError(null);
 
     if (newPassword !== confirmPassword) {
-      toast.warning("Şifreler eşleşmiyor.");
+      setError("Şifreler eşleşmiyor.");
       return;
     }
 
@@ -33,8 +35,8 @@ export const useResetPassword = () => {
 
       toast.success("Şifreniz başarıyla sıfırlandı! Giriş yapabilirsiniz.");
       navigate("/login");
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (err: any) {
+      setError(err.message || "Şifre sıfırlama başarısız.");
     } finally {
       setLoading(false);
     }
@@ -46,6 +48,7 @@ export const useResetPassword = () => {
     confirmPassword,
     setConfirmPassword,
     loading,
+    error,
     handleSubmit,
   };
 };
