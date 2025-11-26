@@ -1,5 +1,7 @@
 import type { CreateUserRequest } from "../../models/Auth/Requests/CreateUserRequest";
+import type { ForgotPasswordRequest } from "../../models/Auth/Requests/ForgotPasswordRequest";
 import type { LoginRequest } from "../../models/Auth/Requests/LoginRequest";
+import type { ResetPasswordRequest } from "../../models/Auth/Requests/ResetPasswordRequest";
 import type { UpdateUserEmailRequest } from "../../models/Auth/Requests/UpdateUserEmailRequest";
 import type { UpdateUserPasswordRequest } from "../../models/Auth/Requests/UpdateUserPasswordRequest";
 import type { LoginResponse } from "../../models/Auth/Responses/LoginResponse";
@@ -42,3 +44,19 @@ export const updatePassword = async (
 ): Promise<void> => {
   await api.put<ServiceResult<null>>("/auth/update-password", request);
 };
+
+export const forgotPassword = async (request: ForgotPasswordRequest): Promise<string> => {
+  const response = await api.post<ServiceResult<string>>('/auth/forgot-password', request);
+
+  if(!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+
+  return response.data.data;
+}
+
+export const resetPassword = async (request: ResetPasswordRequest): Promise<void> => {
+  const response = await api.post<ServiceResult<null>>('/auth/reset-password', request);
+
+  if (response.status === 204) return;
+  
+  if(!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+}
