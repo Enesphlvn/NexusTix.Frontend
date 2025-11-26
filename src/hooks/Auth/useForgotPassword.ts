@@ -16,11 +16,8 @@ export const useForgotPassword = () => {
     try {
       const token = await forgotPassword({ email });
 
-      setTimeout(() => {
-        navigate(
-          `/reset-password?token=${encodeURIComponent(token)}&email=${email}`
-        );
-      }, 1500);
+      navigate(`/reset-password?token=${encodeURIComponent(token)}&email=${email}`);
+      
     } catch (err: any) {
       setError(err.message || "İşlem başarısız oldu.");
     } finally {
