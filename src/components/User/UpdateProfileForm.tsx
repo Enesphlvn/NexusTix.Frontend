@@ -33,7 +33,7 @@ const UpdateProfileForm = ({
         phoneNumber: phoneNumber || null,
       });
 
-      toast.success("Profil bilgileriniz güncellendi! ✅", {
+      toast.success("Profil bilgileriniz güncellendi!", {
         position: "top-right",
       });
       onUpdateSuccess();

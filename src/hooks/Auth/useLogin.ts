@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "./useAuth";
 import { useState, type FormEvent } from "react";
 import type { LoginRequest } from "../../models/Auth/Requests/LoginRequest";
@@ -6,6 +6,7 @@ import type { LoginRequest } from "../../models/Auth/Requests/LoginRequest";
 export const useLogin = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +26,9 @@ export const useLogin = () => {
       setLoading(true);
       const request: LoginRequest = { email, password };
       await login(request);
-      navigate("/");
+
+      const from = location.state?.from || "/";
+      navigate(from, { replace: true });
     } catch (err: any) {
       setError(err.message || "Giriş işlemi başarısız.");
     } finally {

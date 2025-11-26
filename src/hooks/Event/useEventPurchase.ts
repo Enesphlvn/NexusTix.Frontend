@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../Auth/useAuth";
 import type { EventAggregateResponse } from "../../models/Event/Responses/EventAggregateResponse";
 import { toast } from "react-toastify";
@@ -8,6 +8,7 @@ import { createTicket } from "../../api/Ticket/ticketService";
 
 export const useEventPurchase = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { isAuthenticated } = useAuth();
 
   const handleBuyTicket = async (
@@ -28,7 +29,11 @@ export const useEventPurchase = () => {
           theme: "colored",
         }
       );
-      setTimeout(() => navigate("/login"), 1000);
+
+      setTimeout(() => {
+        navigate("/login", { state: { from: location.pathname } });
+      }, 1000);
+
       return;
     }
 
