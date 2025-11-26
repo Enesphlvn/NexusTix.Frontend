@@ -25,8 +25,8 @@ const EventDetail = ({
   });
 
   const remainingTickets = event.capacity - (soldCount ?? 0);
-
-  const isLowStock = remainingTickets > 0 && remainingTickets < 100;
+  const occupancyRate = (soldCount ?? 0) / event.capacity;
+  const isLowStock = remainingTickets > 0 && occupancyRate >= 0.8;
 
   return (
     <div className={styles.container}>
