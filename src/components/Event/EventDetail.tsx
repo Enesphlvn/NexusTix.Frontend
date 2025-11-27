@@ -1,4 +1,9 @@
-import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  FaCalendarAlt,
+  FaClock,
+  FaDirections,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 import type { EventAggregateResponse } from "../../models/Event/Responses/EventAggregateResponse";
 import styles from "./EventDetail.module.css";
 import EventMap from "./EventMap";
@@ -28,6 +33,12 @@ const EventDetail = ({
   const remainingTickets = event.capacity - (soldCount ?? 0);
   const occupancyRate = (soldCount ?? 0) / event.capacity;
   const isLowStock = remainingTickets > 0 && occupancyRate >= 0.8;
+
+  const handleGetDirections = () => {
+    const { latitude, longitude } = event.venue;
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+    window.open(url, "_blank");
+  };
 
   return (
     <div className={styles.container}>
@@ -72,6 +83,14 @@ const EventDetail = ({
                 {event.venue.districtName}, {event.venue.cityName}
               </span>
             </div>
+
+            <button
+              className={styles.directionsButton}
+              onClick={handleGetDirections}
+              title="Google Haritalar'da Aç"
+            >
+              <FaDirections /> Yol Tarifi Al
+            </button>
           </div>
 
           <div className={styles.infoItem}>
