@@ -16,6 +16,8 @@ export const useVenueForm = () => {
 
   const [name, setName] = useState("");
   const [capacity, setCapacity] = useState<number>(0);
+  const [latitude, setLatitude] = useState<number>(0);
+  const [longitude, setLongitude] = useState<number>(0);
   const [cityId, setCityId] = useState<number>(0);
   const [districtId, setDistrictId] = useState<number>(0);
 
@@ -31,6 +33,8 @@ export const useVenueForm = () => {
 
           setName(venue.name);
           setCapacity(venue.capacity);
+          setLatitude(venue.latitude);
+          setLongitude(venue.longitude);
           setCityId(venue.cityId);
           setDistrictId(venue.districtId);
         } catch (error) {
@@ -59,6 +63,8 @@ export const useVenueForm = () => {
           id: Number(id),
           name,
           capacity,
+          latitude,
+          longitude,
           districtId,
         };
         await updateVenue(request);
@@ -67,6 +73,8 @@ export const useVenueForm = () => {
         const request: CreateVenueRequest = {
           name,
           capacity,
+          latitude,
+          longitude,
           districtId,
         };
         await createVenue(request);
@@ -85,6 +93,10 @@ export const useVenueForm = () => {
     setName,
     capacity,
     setCapacity,
+    latitude,
+    setLatitude,
+    longitude,
+    setLongitude,
     cityId,
     setCityId,
     districtId,

@@ -7,6 +7,10 @@ interface AdminVenueFormProps {
   setName: (val: string) => void;
   capacity: number;
   setCapacity: (val: number) => void;
+  latitude: number;
+  setLatitude: (val: number) => void;
+  longitude: number;
+  setLongitude: (val: number) => void;
   cityId: number;
   setCityId: (val: number) => void;
   districtId: number;
@@ -26,6 +30,10 @@ const AdminVenueForm = (props: AdminVenueFormProps) => {
     setName,
     capacity,
     setCapacity,
+    latitude,
+    setLatitude,
+    longitude,
+    setLongitude,
     cityId,
     setCityId,
     districtId,
@@ -65,6 +73,39 @@ const AdminVenueForm = (props: AdminVenueFormProps) => {
             value={capacity}
             onChange={(e) => setCapacity(Number(e.target.value))}
           />
+        </div>
+
+        <div className={styles.row}>
+          <div className={styles.formGroup}>
+            <label>Enlem (Latitude)</label>
+            <input
+              type="number"
+              step="any"
+              className={styles.input}
+              required
+              placeholder="41.0082"
+              value={latitude}
+              onChange={(e) => setLatitude(Number(e.target.value))}
+            />
+            <small style={{ color: "#888", fontSize: "0.8rem" }}>
+              Örn: 41.0673
+            </small>
+          </div>
+          <div className={styles.formGroup}>
+            <label>Boylam (Longitude)</label>
+            <input
+              type="number"
+              step="any"
+              className={styles.input}
+              required
+              placeholder="28.9784"
+              value={longitude}
+              onChange={(e) => setLongitude(Number(e.target.value))}
+            />
+            <small style={{ color: "#888", fontSize: "0.8rem" }}>
+              Örn: 29.0175
+            </small>
+          </div>
         </div>
 
         <div className={styles.formGroup}>
