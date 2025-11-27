@@ -1,6 +1,7 @@
-import { FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 import type { EventAggregateResponse } from "../../models/Event/Responses/EventAggregateResponse";
 import styles from "./EventDetail.module.css";
+import EventMap from "./EventMap";
 
 interface EventDetailProps {
   event: EventAggregateResponse;
@@ -33,16 +34,26 @@ const EventDetail = ({
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <h1 className={styles.title}>{event.name}</h1>
-          <div className={styles.dateBadge}>📅 {formattedDate}</div>
+          <div className={styles.dateBadge}>
+            <FaCalendarAlt style={{ marginRight: "0.5rem" }} /> {formattedDate}
+          </div>
         </div>
       </div>
 
       <div className={styles.content}>
-        <div className={styles.descriptionSection}>
-          <h3>Etkinlik Hakkında</h3>
-          <p className={styles.description}>
-            {event.description || "Bu etkinlik için açıklama girilmemiş."}
-          </p>
+        <div className={styles.leftColumn}>
+          <div className={styles.descriptionSection}>
+            <h3>Etkinlik Hakkında</h3>
+            <p className={styles.description}>
+              {event.description || "Bu etkinlik için açıklama girilmemiş."}
+            </p>
+          </div>
+
+          <EventMap
+            latitude={event.venue.latitude}
+            longitude={event.venue.longitude}
+            venueName={event.venue.name}
+          />
         </div>
 
         <div className={styles.infoSection}>
