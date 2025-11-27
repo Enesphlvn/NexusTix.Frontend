@@ -68,11 +68,11 @@ export const useEventPurchase = () => {
       await createTicket(request);
 
       toast.success(
-        "Biletiniz başarıyla oluşturuldu! 🎉 Yönlendiriliyorsunuz...",
-        { position: "top-center", autoClose: 2000, theme: "colored" }
+        "Biletiniz başarıyla oluşturuldu! Yönlendiriliyorsunuz...",
+        { position: "top-center", autoClose: 1500, theme: "colored" }
       );
 
-      setTimeout(() => navigate("/my-tickets"), 2000);
+      setTimeout(() => navigate("/my-tickets"), 1500);
     } catch (error: any) {
       toast.error(error.message || "Satın alma işlemi başarısız oldu.", {
         position: "top-right",
