@@ -20,6 +20,7 @@ export const useEventForm = (id?: string) => {
   const [capacity, setCapacity] = useState<number>(0);
   const [eventTypeId, setEventTypeId] = useState<number>(0);
   const [venueId, setVenueId] = useState<number>(0);
+  const [artistIds, setArtistIds] = useState<number[]>([]);
 
   const [selectedCityId, setSelectedCityId] = useState<number>(0);
   const [selectedDistrictId, setSelectedDistrictId] = useState<number>(0);
@@ -41,6 +42,9 @@ export const useEventForm = (id?: string) => {
           setCapacity(event.capacity);
           setEventTypeId(event.eventTypeId);
           setVenueId(event.venueId);
+          if (event.artistIds) {
+            setArtistIds(event.artistIds);
+          }
         } catch (error: any) {
           toast.error("Etkinlik bilgileri yüklenemedi.");
           navigate("/admin/events");
@@ -80,6 +84,7 @@ export const useEventForm = (id?: string) => {
           capacity,
           eventTypeId,
           venueId,
+          artistIds,
         };
         await updateEvent(request);
         toast.success("Etkinlik başarıyla güncellendi.");
@@ -92,6 +97,7 @@ export const useEventForm = (id?: string) => {
           capacity,
           eventTypeId,
           venueId,
+          artistIds,
         };
         await createEvent(request);
         toast.success("Yeni etkinlik başarıyla oluşturuldu.");
@@ -120,6 +126,8 @@ export const useEventForm = (id?: string) => {
     setEventTypeId,
     venueId,
     setVenueId,
+    artistIds,
+    setArtistIds,
     selectedCityId,
     setSelectedCityId,
     selectedDistrictId,

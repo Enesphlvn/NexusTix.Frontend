@@ -1,6 +1,8 @@
+import type { ArtistResponse } from "../../../models/Artist/Responses/ArtistResponse";
 import type { EventTypeResponse } from "../../../models/EventType/Responses/EventTypeResponse";
 import type { VenueResponse } from "../../../models/Venue/Responses/VenueResponse";
 import styles from "../Common/AdminForm.module.css";
+import MultiSelectArtist from "./MultiSelectArtist";
 
 interface AdminEventFormProps {
   name: string;
@@ -17,10 +19,13 @@ interface AdminEventFormProps {
   setEventTypeId: (val: number) => void;
   venueId: number;
   setVenueId: (val: number) => void;
+  artistIds: number[];
+  setArtistIds: (val: number[]) => void;
 
+  artists: ArtistResponse[];
   venues: VenueResponse[];
   eventTypes: EventTypeResponse[];
-  
+
   loading: boolean;
   isEditMode: boolean;
 
@@ -54,12 +59,22 @@ const AdminEventForm = (props: AdminEventFormProps) => {
     setEventTypeId,
     venueId,
     setVenueId,
+    artistIds,
+    setArtistIds,
+    artists,
     venues,
     eventTypes,
     loading,
     isEditMode,
     handleSubmit,
   } = props;
+
+  const handleArtistChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedOptions = Array.from(e.target.selectedOptions, (option) =>
+      Number(option.value)
+    );
+    setArtistIds(selectedOptions);
+  };
 
   return (
     <div className={styles.container}>
@@ -131,6 +146,15 @@ const AdminEventForm = (props: AdminEventFormProps) => {
               </option>
             ))}
           </select>
+        </div>
+
+        <div className={styles.formGroup}>
+          <label>Sanatçılar</label>
+          <MultiSelectArtist
+            options={artists}
+            selectedIds={artistIds}
+            onChange={setArtistIds}
+          />
         </div>
 
         <div className={styles.formGroup}>

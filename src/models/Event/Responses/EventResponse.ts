@@ -7,4 +7,5 @@ export interface EventResponse {
   capacity: number;
   eventTypeId: number;
   venueId: number;
+  artistIds: number[];
 }
