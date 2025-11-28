@@ -1,0 +1,103 @@
+.row {
+  background-color: #ffffff;
+  border-bottom: 1px solid #f1f1f4;
+  transition: all 0.2s ease-in-out;
+}
+
+.row:hover {
+  background-color: #f9f9fc;
+  transform: scale(1.002);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  z-index: 1;
+  position: relative;
+}
+
+.cell {
+  padding: 1rem 1.5rem;
+  vertical-align: middle;
+  color: #5e6278;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.idCell {
+  font-family: "Courier New", monospace;
+  color: #b5b5c3;
+  font-weight: 600;
+}
+
+.artistInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.name {
+  color: #181c32;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.bioCell {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #7e8299;
+}
+
+.actionsCell {
+  text-align: right;
+  padding-right: 2rem;
+}
+
+.actionsWrapper {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.editButton,
+.deleteButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.editButton {
+  background-color: #fff4de;
+  color: #ffa800;
+}
+.editButton:hover {
+  background-color: #ffa800;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.deleteButton {
+  background-color: #ffe2e5;
+  color: #f64e60;
+}
+.deleteButton:hover {
+  background-color: #f64e60;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
