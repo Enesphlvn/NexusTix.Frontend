@@ -11,4 +11,5 @@ export interface EventListResponse {
   venueName: string;
   districtName: string;
   cityName: string;
+  artistNames: string[];
 }
