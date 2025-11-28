@@ -33,12 +33,8 @@ export const getFilteredEvents = async (
   return response.data.data;
 };
 
-export const getEventAggregate = async (
-  id: number
-): Promise<EventAggregateResponse> => {
-  const response = await api.get<ServiceResult<EventAggregateResponse>>(
-    `/events/${id}/aggregate`
-  );
+export const getEventAggregate = async (id: number): Promise<EventAggregateResponse> => {
+  const response = await api.get<ServiceResult<EventAggregateResponse>>(`/events/${id}/aggregate`);
 
   if (!response.data.isSuccess)
     throw new Error(response.data.errorMessages.join(", "));

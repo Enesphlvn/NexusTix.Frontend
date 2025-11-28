@@ -3,6 +3,7 @@ import {
   FaClock,
   FaDirections,
   FaMapMarkerAlt,
+  FaMicrophoneAlt,
 } from "react-icons/fa";
 import type { EventAggregateResponse } from "../../models/Event/Responses/EventAggregateResponse";
 import styles from "./EventDetail.module.css";
@@ -44,6 +45,12 @@ const EventDetail = ({
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.headerContent}>
+          {event.artistNames && event.artistNames.length > 0 && (
+            <div className={styles.artistLabel}>
+              <FaMicrophoneAlt />
+              {event.artistNames.join(" & ")}
+            </div>
+          )}
           <h1 className={styles.title}>{event.name}</h1>
           <div className={styles.dateBadge}>
             <FaCalendarAlt style={{ marginRight: "0.5rem" }} /> {formattedDate}

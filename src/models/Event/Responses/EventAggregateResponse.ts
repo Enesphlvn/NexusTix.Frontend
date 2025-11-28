@@ -10,4 +10,5 @@ export interface EventAggregateResponse {
   capacity: number;
   eventType: EventTypeResponse;
   venue: VenueWithLocationResponse;
+  artistNames: string[];
 }
