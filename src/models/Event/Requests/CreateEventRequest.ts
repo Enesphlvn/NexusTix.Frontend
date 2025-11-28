@@ -6,4 +6,5 @@ export interface CreateEventRequest {
   capacity: number;
   eventTypeId: number;
   venueId: number;
+  artistIds: number[];
 }

@@ -7,4 +7,5 @@ export interface UpdateEventRequest {
   capacity: number;
   eventTypeId: number;
   venueId: number;
+  artistIds: number[];
 }
