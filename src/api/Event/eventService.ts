@@ -52,9 +52,7 @@ export const deleteEvent = async (id: number): Promise<void> => {
 };
 
 export const getEventsForAdmin = async (): Promise<EventAdminResponse[]> => {
-  const response = await api.get<ServiceResult<EventAdminResponse[]>>(
-    "/events/admin-list"
-  );
+  const response = await api.get<ServiceResult<EventAdminResponse[]>>("/events/admin-list");
 
   if (!response.data.isSuccess)
     throw new Error(response.data.errorMessages.join(", "));
