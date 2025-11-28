@@ -21,6 +21,13 @@ const AdminEventRow = ({ event, onDelete }: AdminEventRowProps) => {
     <tr className={styles.row}>
       <td className={`${styles.cell} ${styles.idCell}`}>#{event.id}</td>
 
+      <td
+        className={`${styles.cell} ${styles.nameCell}`}
+      >
+        {event.artistNames && event.artistNames.length > 0
+          ? event.artistNames.join(", ")
+          : "-"}
+      </td>
       <td className={`${styles.cell} ${styles.nameCell}`}>{event.name}</td>
 
       <td className={styles.cell}>{formattedDate}</td>

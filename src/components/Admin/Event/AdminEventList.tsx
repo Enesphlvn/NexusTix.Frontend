@@ -20,6 +20,7 @@ const AdminEventList = ({ events, onDelete }: AdminEventListProps) => {
         <thead>
           <tr className={styles.headerRow}>
             <th className={styles.headerCell}>ID</th>
+            <th className={styles.headerCell}>Sanatçı</th>
             <th className={styles.headerCell}>Etkinlik</th>
             <th className={styles.headerCell}>Tarih</th>
             <th className={styles.headerCell}>Mekan / Kategori</th>

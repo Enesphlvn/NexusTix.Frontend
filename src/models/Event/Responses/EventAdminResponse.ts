@@ -9,4 +9,5 @@ export interface EventAdminResponse {
   eventTypeName: string;
   venueId: number;
   venueName: string;
+  artistNames: string[];
 }
