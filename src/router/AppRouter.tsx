@@ -19,6 +19,8 @@ import DashboardPage from "../pages/Admin/DashBoards/DashboardPage";
 import AdminCheckInPage from "../pages/Admin/Tickets/AdminCheckInPage";
 import ForgotPasswordPage from "../pages/Auth/ForgotPasswordPage";
 import ResetPasswordPage from "../pages/Auth/ResetPasswordPage";
+import AdminArtistsPage from "../pages/Admin/Artists/AdminArtistsPage";
+import AdminArtistFormPage from "../pages/Admin/Artists/AdminArtistFormPage";
 
 export const AppRouter = () => {
   return (
@@ -55,6 +57,10 @@ export const AppRouter = () => {
 
             <Route path="users" element={<AdminUsersPage />} />
             <Route path="checkin" element={<AdminCheckInPage />} />
+
+            <Route path="artists" element={<AdminArtistsPage />} />
+            <Route path="artists/new" element={<AdminArtistFormPage />} />
+            <Route path="artists/edit/:id" element={<AdminArtistFormPage />} />
           </Route>
         </Route>
       </Routes>

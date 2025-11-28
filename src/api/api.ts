@@ -36,7 +36,7 @@ api.interceptors.response.use(
 
     return Promise.reject(
       new Error(
-        "Beklenmedik bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin."
+        "Beklenmedik bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya sisteme tekrardan giriş yapın."
       )
     );
   }

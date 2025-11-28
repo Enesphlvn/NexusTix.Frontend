@@ -5,6 +5,7 @@ import {
   FaCalendarAlt,
   FaChartPie,
   FaMapMarkerAlt,
+  FaMicrophoneAlt,
   FaQrcode,
   FaUsers,
 } from "react-icons/fa";
@@ -35,6 +36,11 @@ const AdminSidebar = () => {
         <li className={styles.menuItem}>
           <Link to="/admin/venues" className={isActive("/admin/venues")}>
             <FaMapMarkerAlt className={styles.menuIcon} /> Mekan Yönetimi
+          </Link>
+        </li>
+        <li className={styles.menuItem}>
+          <Link to="/admin/artists" className={isActive("/admin/artists")}>
+            <FaMicrophoneAlt className={styles.menuIcon} /> Sanatçı Yönetimi
           </Link>
         </li>
         <li className={styles.menuItem}>

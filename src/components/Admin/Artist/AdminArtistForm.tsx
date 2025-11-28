@@ -7,7 +7,6 @@ interface AdminArtistFormProps {
   setBio: (val: string) => void;
   imageUrl: string;
   setImageUrl: (val: string) => void;
-
   loading: boolean;
   isEditMode: boolean;
   handleSubmit: (e: React.FormEvent) => void;
@@ -27,8 +26,8 @@ const AdminArtistForm = (props: AdminArtistFormProps) => {
   } = props;
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>
+    <div className={styles.container}>
+      <h2 className={styles.formTitle}>
         {isEditMode ? "Sanatçıyı Düzenle" : "Yeni Sanatçı Ekle"}
       </h2>
 
@@ -56,14 +55,9 @@ const AdminArtistForm = (props: AdminArtistFormProps) => {
           {imageUrl && (
             <img
               src={imageUrl}
-              alt="Preview"
-              style={{
-                width: "60px",
-                height: "60px",
-                borderRadius: "50%",
-                marginTop: "10px",
-                objectFit: "cover",
-              }}
+              alt="Önizleme"
+              className={styles.imagePreview}
+              onError={(e) => e.currentTarget.style.display = 'none'}
             />
           )}
         </div>
@@ -78,7 +72,7 @@ const AdminArtistForm = (props: AdminArtistFormProps) => {
           />
         </div>
 
-        <button type="submit" className={styles.button} disabled={loading}>
+        <button type="submit" className={styles.submitButton} disabled={loading}>
           {loading ? "Kaydediliyor..." : isEditMode ? "Güncelle" : "Oluştur"}
         </button>
       </form>
