@@ -16,11 +16,11 @@ const AdminArtistRow = ({ artist, onDelete }: AdminArtistRowProps) => {
       <td className={styles.cell}>
         <div className={styles.artistInfo}>
           <img
-            src={artist.imageUrl || "/images/default-placeholder.png"}
+            src={artist.imageUrl || "/images/default-placeholder.jpg"}
             alt={artist.name}
             className={styles.avatar}
             onError={(e) =>
-              (e.currentTarget.src = "/images/default-placeholder.png")
+              (e.currentTarget.src = "/images/default-placeholder.jpg")
             }
           />
           <span className={styles.name}>{artist.name}</span>
