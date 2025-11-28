@@ -21,7 +21,13 @@ export const useEvents = (filters: EventFiltersRequest) => {
     } finally {
       setLoading(false);
     }
-  }, [filters.cityId, filters.eventTypeId, filters.date, filters.districtId]);
+  }, [
+    filters.cityId,
+    filters.eventTypeId,
+    filters.artistId,
+    filters.date,
+    filters.districtId,
+  ]);
 
   useEffect(() => {
     fetchEvents();

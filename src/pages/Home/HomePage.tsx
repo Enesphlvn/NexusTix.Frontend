@@ -13,12 +13,14 @@ const HomePage = () => {
     events,
     cities,
     eventTypes,
+    artists,
     districts,
     isLoading,
     eventsError,
     handleCityChange,
     handleDistrictChange,
     handleEventTypeChange,
+    handleArtistChange,
     handleDateChange,
     handleSearch,
   } = useHomeFilter();
@@ -51,13 +53,16 @@ const HomePage = () => {
             cities={cities}
             eventTypes={eventTypes}
             districts={districts}
+            artists={artists}
             selectedCityId={draftFilters.cityId?.toString() || ""}
             selectedDistrictId={draftFilters.districtId?.toString() || ""}
             selectedEventTypeId={draftFilters.eventTypeId?.toString() || ""}
+            selectedArtistId={draftFilters.artistId?.toString() || ""}
             selectedDate={draftFilters.date || ""}
             onCityChange={handleCityChange}
             onDistrictChange={handleDistrictChange}
             onEventTypeChange={handleEventTypeChange}
+            onArtistChange={handleArtistChange}
             onDateChange={handleDateChange}
             onSearch={handleSearch}
           />

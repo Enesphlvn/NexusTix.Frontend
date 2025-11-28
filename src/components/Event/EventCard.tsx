@@ -1,6 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./EventCard.module.css";
-import { FaArrowRight, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaCalendarAlt,
+  FaMapMarkerAlt,
+  FaMicrophoneAlt,
+} from "react-icons/fa";
 import type { EventListResponse } from "../../models/Event/Responses/EventListResponse";
 
 interface EventCardProps {
@@ -32,6 +37,15 @@ const EventCard = ({ event }: EventCardProps) => {
           <h3 className={styles.cardTitle}>{event.name}</h3>
 
           <div className={styles.metaInfo}>
+            {event.artistNames && event.artistNames.length > 0 && (
+              <div className={styles.infoItem} style={{ color: "#e0a800" }}>
+                <FaMicrophoneAlt className={styles.infoIcon} />
+                <span style={{ fontWeight: "600" }}>
+                  {event.artistNames.join(", ")}
+                </span>
+              </div>
+            )}
+
             <div className={styles.infoItem}>
               <FaMapMarkerAlt className={styles.infoIcon} />
               <span className={styles.venueText}>

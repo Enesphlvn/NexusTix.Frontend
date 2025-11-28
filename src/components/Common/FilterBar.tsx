@@ -4,20 +4,24 @@ import type { EventTypeResponse } from "../../models/EventType/Responses/EventTy
 import styles from "./FilterBar.module.css";
 import type { DistrictResponse } from "../../models/District/DistrictResponse";
 import { FaSearch } from "react-icons/fa";
+import type { ArtistResponse } from "../../models/Artist/Responses/ArtistResponse";
 
 interface FilterBarProps {
   cities: CityResponse[];
   districts: DistrictResponse[];
   eventTypes: EventTypeResponse[];
+  artists: ArtistResponse[];
 
   selectedCityId: string;
   selectedDistrictId: string;
   selectedEventTypeId: string;
+  selectedArtistId: string;
   selectedDate: string;
 
   onCityChange: (id: string) => void;
   onDistrictChange: (id: string) => void;
   onEventTypeChange: (id: string) => void;
+  onArtistChange: (id: string) => void;
   onDateChange: (date: string) => void;
 
   onSearch: () => void;
@@ -27,13 +31,16 @@ const FilterBar = ({
   cities,
   districts,
   eventTypes,
+  artists,
   selectedCityId,
   selectedDistrictId,
   selectedEventTypeId,
+  selectedArtistId,
   selectedDate,
   onCityChange,
   onDistrictChange,
   onEventTypeChange,
+  onArtistChange,
   onDateChange,
   onSearch,
 }: FilterBarProps) => {
@@ -56,6 +63,23 @@ const FilterBar = ({
           {eventTypes.map((type) => (
             <option key={type.id} value={type.id}>
               {type.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className={styles.formGroup}>
+        <label htmlFor="artist">Sanatçı</label>
+        <select
+          id="artist"
+          className={styles.selectInput}
+          value={selectedArtistId}
+          onChange={(e) => onArtistChange(e.target.value)}
+        >
+          <option value="">Tüm Sanatçılar</option>
+          {artists.map((artist) => (
+            <option key={artist.id} value={artist.id}>
+              {artist.name}
             </option>
           ))}
         </select>
