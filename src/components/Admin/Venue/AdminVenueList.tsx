@@ -1,10 +1,10 @@
-import type { VenueResponse } from "../../../models/Venue/Responses/VenueResponse";
 import AdminVenueRow from "./AdminVenueRow";
 import styles from "./AdminVenueList.module.css";
+import type { VenueAdminResponse } from "../../../models/Venue/Responses/VenueAdminResponse";
 
 interface AdminVenueListProps {
-  venues: VenueResponse[];
-  onDelete: (id: number) => void;
+  venues: VenueAdminResponse[];
+  onDelete: (id: number, isActive: boolean) => void;
 }
 
 const AdminVenueList = ({ venues, onDelete }: AdminVenueListProps) => {
@@ -20,6 +20,8 @@ const AdminVenueList = ({ venues, onDelete }: AdminVenueListProps) => {
             <th className={styles.headerCell}>ID</th>
             <th className={styles.headerCell}>Mekan Adı</th>
             <th className={styles.headerCell}>Bilgiler</th>
+            <th className={styles.headerCell}>Durum</th>
+            <th className={styles.headerCell}>Kayıt Tarihi</th>
             <th className={styles.headerActions}>İşlemler</th>
           </tr>
         </thead>

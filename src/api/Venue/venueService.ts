@@ -13,15 +13,27 @@ export const getAllVenues = async (): Promise<VenueResponse[]> => {
   return response.data.data!;
 };
 
+export const getAllVenuesForAdmin = async (): Promise<VenueAdminResponse[]> => {
+  const response = await api.get<ServiceResult<VenueAdminResponse[]>>("/venues/admin-list");
+
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+  
+  return response.data.data!;
+};
+
 export const getVenueById = async (id: number): Promise<VenueResponse> => {
   const response = await api.get<ServiceResult<VenueResponse>>(`/venues/${id}`);
+
   if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+
   return response.data.data!;
 };
 
 export const createVenue = async (request: CreateVenueRequest): Promise<VenueResponse> => {
   const response = await api.post<ServiceResult<VenueResponse>>("/venues", request);
+
   if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+  
   return response.data.data!;
 };
 
