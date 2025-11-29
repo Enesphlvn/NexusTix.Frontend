@@ -1,5 +1,6 @@
 import type { CreateArtistRequest } from "../../models/Artist/Requests/CreateArtistRequest";
 import type { UpdateArtistRequest } from "../../models/Artist/Requests/UpdateArtistRequest";
+import type { ArtistAdminResponse } from "../../models/Artist/Responses/ArtistAdminResponse";
 import type { ArtistResponse } from "../../models/Artist/Responses/ArtistResponse";
 import type { ArtistWithEventsResponse } from "../../models/Artist/Responses/ArtistWithEventsResponse";
 import type { ServiceResult } from "../../models/ServiceResult";
@@ -10,6 +11,22 @@ export const getAllArtists = async (): Promise<ArtistResponse[]> => {
 
   if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 
+  return response.data.data!;
+};
+
+export const getAllArtistsForAdmin = async (): Promise<ArtistAdminResponse[]> => {
+  const response = await api.get<ServiceResult<ArtistAdminResponse[]>>("/artists/admin-list");
+
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+  
+  return response.data.data!;
+};
+
+export const getArtistForAdmin = async (id: number): Promise<ArtistAdminResponse> => {
+  const response = await api.get<ServiceResult<ArtistAdminResponse>>(`/artists/${id}/admin-edit`);
+  
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+  
   return response.data.data!;
 };
 
