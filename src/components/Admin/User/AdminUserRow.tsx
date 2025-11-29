@@ -9,14 +9,32 @@ interface AdminUserRowProps {
 
 const AdminUserRow = ({ user, onRoleChange, onPassive }: AdminUserRowProps) => {
   const currentRole = user.roles.length > 0 ? user.roles[0] : "User";
-  const createdDate = new Date(user.created).toLocaleDateString("tr-TR");
+  
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return "-";
+    return new Date(dateString).toLocaleDateString("tr-TR", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
+  const createdDisplay = formatDate(user.created);
+
+  const tooltipText = user.updated 
+    ? `Son Güncelleme: ${formatDate(user.updated)}` 
+    : "Henüz güncellenmedi";
 
   return (
     <tr className={styles.row}>
       <td className={`${styles.cell} ${styles.idCell}`}>#{user.id}</td>
+
       <td className={`${styles.cell} ${styles.nameCell}`}>
         {user.firstName} {user.lastName}
       </td>
+
       <td className={`${styles.cell} ${styles.emailCell}`}>{user.email}</td>
 
       <td className={styles.cell}>
@@ -40,8 +58,26 @@ const AdminUserRow = ({ user, onRoleChange, onPassive }: AdminUserRowProps) => {
           {user.isActive ? "Aktif" : "Pasif"}
         </span>
       </td>
-
-      <td className={styles.cell}>{createdDate}</td>
+      
+      <td 
+        className={styles.cell} 
+        title={tooltipText}
+        style={{ cursor: "help" }}
+      >
+        {createdDisplay}
+        {user.updated && (
+            <span 
+                style={{ 
+                    display:'inline-block', 
+                    width:'6px', height:'6px', 
+                    backgroundColor:'#ffc107', 
+                    borderRadius:'50%', 
+                    marginLeft:'8px', 
+                    marginBottom:'2px' 
+                }} 
+            />
+        )}
+      </td>
 
       <td style={{ textAlign: "right", padding: "1rem" }}>
         <button
