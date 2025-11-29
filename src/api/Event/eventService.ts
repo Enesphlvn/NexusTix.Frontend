@@ -51,11 +51,10 @@ export const deleteEvent = async (id: number): Promise<void> => {
     throw new Error(response.data.errorMessages.join(", "));
 };
 
-export const getEventsForAdmin = async (): Promise<EventAdminResponse[]> => {
+export const getAllEventsForAdmin = async (): Promise<EventAdminResponse[]> => {
   const response = await api.get<ServiceResult<EventAdminResponse[]>>("/events/admin-list");
 
-  if (!response.data.isSuccess)
-    throw new Error(response.data.errorMessages.join(", "));
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 
   return response.data.data!;
 };

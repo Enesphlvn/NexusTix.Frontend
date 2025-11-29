@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { EventAdminResponse } from "../../models/Event/Responses/EventAdminResponse";
-import { getEventsForAdmin } from "../../api/Event/eventService";
-
+import { getAllEventsForAdmin } from "../../api/Event/eventService";
+ 
 export const useAdminEvents = () => {
   const [events, setEvents] = useState<EventAdminResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -10,7 +10,7 @@ export const useAdminEvents = () => {
   const fetchEvents = useCallback(async () => {
     try {
       setLoading(true);
-      const data = await getEventsForAdmin();
+      const data = await getAllEventsForAdmin();
       setEvents(data);
     } catch (err: any) {
       setError(

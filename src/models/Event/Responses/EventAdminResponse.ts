@@ -9,5 +9,8 @@ export interface EventAdminResponse {
   eventTypeName: string;
   venueId: number;
   venueName: string;
+  isActive: boolean;
+  created: string;
+  updated: string | null;
   artistNames: string[];
 }
