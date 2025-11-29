@@ -1,14 +1,29 @@
 import { Link } from "react-router-dom";
-import type { ArtistResponse } from "../../../models/Artist/Responses/ArtistResponse";
 import styles from "./AdminArtistRow.module.css";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import type { ArtistAdminResponse } from "../../../models/Artist/Responses/ArtistAdminResponse";
 
 interface AdminArtistRowProps {
-  artist: ArtistResponse;
-  onDelete: (id: number) => void;
+  artist: ArtistAdminResponse;
+  onDelete: (id: number, isActive: boolean) => void;
 }
 
 const AdminArtistRow = ({ artist, onDelete }: AdminArtistRowProps) => {
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return "-";
+    return new Date(dateString).toLocaleDateString("tr-TR", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
+  const tooltipText = artist.updated
+    ? `Son Güncelleme: ${formatDate(artist.updated)}`
+    : "Henüz güncellenmedi";
+
   return (
     <tr className={styles.row}>
       <td className={`${styles.cell} ${styles.idCell}`}>#{artist.id}</td>
@@ -31,6 +46,36 @@ const AdminArtistRow = ({ artist, onDelete }: AdminArtistRowProps) => {
         {artist.bio || "-"}
       </td>
 
+      <td className={styles.cell}>
+        <span
+          className={`${styles.badge} ${
+            artist.isActive ? styles.activeBadge : styles.passiveBadge
+          }`}
+        >
+          {artist.isActive ? "Aktif" : "Pasif"}
+        </span>
+      </td>
+
+      <td
+        className={styles.cell}
+        title={tooltipText}
+        style={{ cursor: "help" }}
+      >
+        {formatDate(artist.created)}
+        {artist.updated && (
+          <span
+            style={{
+              display: "inline-block",
+              width: "6px",
+              height: "6px",
+              backgroundColor: "#ffc107",
+              borderRadius: "50%",
+              marginLeft: "5px",
+            }}
+          />
+        )}
+      </td>
+
       <td className={styles.actionsCell}>
         <div className={styles.actionsWrapper}>
           <Link
@@ -41,10 +86,12 @@ const AdminArtistRow = ({ artist, onDelete }: AdminArtistRowProps) => {
           </Link>
 
           <button
-            onClick={() => onDelete(artist.id)}
-            className={styles.deleteButton}
+            onClick={() => onDelete(artist.id, artist.isActive)}
+            className={
+              artist.isActive ? styles.deleteButton : styles.activateButton
+            }
           >
-            <FaTrash /> Kaldır
+            {artist.isActive ? "Pasife Al" : "Aktife Al"}
           </button>
         </div>
       </td>

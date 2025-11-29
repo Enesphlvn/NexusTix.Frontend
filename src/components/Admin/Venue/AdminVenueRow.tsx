@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./AdminVenueRow.module.css";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import type { VenueAdminResponse } from "../../../models/Venue/Responses/VenueAdminResponse";
 
 interface AdminVenueRowProps {

@@ -69,13 +69,6 @@ const AdminEventForm = (props: AdminEventFormProps) => {
     handleSubmit,
   } = props;
 
-  const handleArtistChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedOptions = Array.from(e.target.selectedOptions, (option) =>
-      Number(option.value)
-    );
-    setArtistIds(selectedOptions);
-  };
-
   return (
     <div className={styles.container}>
       <h2 className={styles.formTitle}>
