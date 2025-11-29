@@ -37,8 +37,8 @@ export const useAdminVenues = () => {
     const result = await Swal.fire({
       title: `Mekanı ${actionText} Al?`,
       text: isActive
-        ? "Bu mekan pasife alınacak ve listelerden kaldırılacaktır."
-        : "Bu mekan tekrar aktif hale gelecektir.",
+        ? "Mekan pasife alınacak ve listelerden kaldırılacaktır."
+        : "Mekan tekrar aktif hale gelecektir.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: confirmColor,

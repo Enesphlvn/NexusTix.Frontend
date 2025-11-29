@@ -4,7 +4,7 @@ import LoadingSpinner from "../../../components/Common/LoadingSpinner";
 import { useAdminArtists } from "../../../hooks/Artist/useAdminArtists";
 import AdminArtistList from "../../../components/Admin/Artist/AdminArtistList";
 import styles from "../Common/AdminEntitiesPage.module.css";
-
+ 
 const AdminArtistsPage = () => {
   const { artists, loading, error, handlePassive } = useAdminArtists();
 
@@ -19,7 +19,7 @@ const AdminArtistsPage = () => {
           <span>+</span> Yeni Sanatçı Ekle
         </Link>
       </div>
-
+ 
       <AdminArtistList artists={artists} onDelete={handlePassive} />
     </div>
   );

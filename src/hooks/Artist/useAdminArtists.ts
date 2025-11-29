@@ -1,12 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import {
-  getAllArtistsForAdmin,
-  passiveArtist,
-} from "../../api/Artist/artistService";
+import { getAllArtistsForAdmin, passiveArtist, } from "../../api/Artist/artistService";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import type { ArtistAdminResponse } from "../../models/Artist/Responses/ArtistAdminResponse";
-
+ 
 export const useAdminArtists = () => {
   const [artists, setArtists] = useState<ArtistAdminResponse[]>([]);
   const [loading, setLoading] = useState(true);
@@ -46,7 +43,7 @@ export const useAdminArtists = () => {
       confirmButtonText: `Evet, ${actionText} Al`,
       cancelButtonText: "Vazgeç",
     });
-
+ 
     if (result.isConfirmed) {
       try {
         await passiveArtist(id);

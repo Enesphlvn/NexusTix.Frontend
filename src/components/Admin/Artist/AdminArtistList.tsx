@@ -1,7 +1,7 @@
 import AdminArtistRow from "./AdminArtistRow";
 import styles from "./AdminArtistList.module.css";
 import type { ArtistAdminResponse } from "../../../models/Artist/Responses/ArtistAdminResponse";
-
+ 
 interface AdminArtistListProps {
   artists: ArtistAdminResponse[];
   onDelete: (id: number, isActive: boolean) => void;

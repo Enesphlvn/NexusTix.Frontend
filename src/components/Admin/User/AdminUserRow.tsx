@@ -1,6 +1,6 @@
 import type { UserAdminResponse } from "../../../models/User/Responses/UserAdminResponse";
 import styles from "./AdminUserRow.module.css";
-
+ 
 interface AdminUserRowProps {
   user: UserAdminResponse;
   onRoleChange: (id: number, newRole: string) => void;

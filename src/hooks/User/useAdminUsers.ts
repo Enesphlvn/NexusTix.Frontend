@@ -7,7 +7,7 @@ import {
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import type { UserAdminResponse } from "../../models/User/Responses/UserAdminResponse";
-
+ 
 export const useAdminUsers = () => {
   const [users, setUsers] = useState<UserAdminResponse[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,14 +41,13 @@ export const useAdminUsers = () => {
 
   const handlePassive = async (id: number, isActive: boolean) => {
     const actionText = isActive ? "Pasife" : "Aktife";
-    const descriptionText = isActive
-      ? "Bu kullanıcı sisteme giriş yapamayacak."
-      : "Bu kullanıcı tekrar sisteme giriş yapabilecek.";
     const confirmColor = isActive ? "#d33" : "#28a745";
 
     const result = await Swal.fire({
       title: `Kullanıcıyı ${actionText} Al?`,
-      text: descriptionText,
+      text: isActive
+        ? "Kullanıcı pasife alınacak ve sisteme giriş yapamayacaktır."
+        : "Kullanıcı tekrar aktif hale gelecektir.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: confirmColor,
@@ -61,9 +60,7 @@ export const useAdminUsers = () => {
       try {
         await passiveUser(id);
 
-        toast.success(
-          `Kullanıcı başarıyla ${actionText.toLowerCase()} alındı.`
-        );
+        toast.success(`Kullanıcı başarıyla ${actionText.toLowerCase()} alındı.`);
         fetchUsers();
       } catch (err: any) {
         toast.error(err.message);

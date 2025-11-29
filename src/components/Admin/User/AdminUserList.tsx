@@ -7,7 +7,7 @@ interface AdminUserListProps {
   onRoleChange: (id: number, newRole: string) => void;
   onPassive: (id: number, isActive: boolean) => void;
 }
-
+ 
 const AdminUserList = ({
   users,
   onRoleChange,

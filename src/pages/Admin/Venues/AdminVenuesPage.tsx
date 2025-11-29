@@ -2,13 +2,11 @@ import { Link } from "react-router-dom";
 import LoadingSpinner from "../../../components/Common/LoadingSpinner";
 import ErrorMessage from "../../../components/Common/ErrorMessage";
 import { useAdminVenues } from "../../../hooks/Venue/useAdminVenues";
-import { usePassiveVenue } from "../../../hooks/Venue/usePassiveVenue";
 import AdminVenueList from "../../../components/Admin/Venue/AdminVenueList";
 import styles from "../Common/AdminEntitiesPage.module.css";
 
 const AdminVenuesPage = () => {
-  const { venues, loading, error, refetch } = useAdminVenues();
-  const { handlePassive } = usePassiveVenue(refetch);
+  const { venues, loading, error, handlePassive } = useAdminVenues();
 
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorMessage message={error} />;

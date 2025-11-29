@@ -7,7 +7,7 @@ interface AdminArtistRowProps {
   artist: ArtistAdminResponse;
   onDelete: (id: number, isActive: boolean) => void;
 }
-
+ 
 const AdminArtistRow = ({ artist, onDelete }: AdminArtistRowProps) => {
   const formatDate = (dateString: string | null) => {
     if (!dateString) return "-";
