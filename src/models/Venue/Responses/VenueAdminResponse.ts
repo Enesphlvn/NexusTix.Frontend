@@ -6,4 +6,7 @@ export interface VenueAdminResponse {
   longitude: number;
   districtId: number;
   cityId: number;
+  isActive: boolean;
+  created: string;
+  updated: string | null;
 }

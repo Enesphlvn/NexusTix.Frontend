@@ -52,11 +52,3 @@ export const passiveArtist = async (id: number): Promise<void> => {
 
   if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 };
-
-// export const searchArtists = async (name: string): Promise<ArtistResponse[]> => {
-//     const response = await api.get<ServiceResult<ArtistResponse[]>>('/artists/search', {
-//         params: { name }
-//     });
-//     if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
-//     return response.data.data!;
-// };
