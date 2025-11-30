@@ -67,6 +67,14 @@ export const getEventForAdmin = async (id: number): Promise<EventAdminResponse> 
   return response.data.data!;
 };
 
+export const getEventsForCheckIn = async (): Promise<EventListResponse[]> => {
+  const response = await api.get<ServiceResult<EventListResponse[]>>("/events/checkin-list");
+
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+  
+  return response.data.data!;
+};
+
 export const createEvent = async (
   request: CreateEventRequest
 ): Promise<EventResponse> => {

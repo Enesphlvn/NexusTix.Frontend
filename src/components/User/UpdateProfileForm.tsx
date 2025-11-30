@@ -75,9 +75,18 @@ const UpdateProfileForm = ({
             type="tel"
             className={styles.input}
             placeholder="05xxxxxxxxx"
+            maxLength={11}
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (/^\d*$/.test(val)) {
+                setPhoneNumber(val);
+              }
+            }}
           />
+          <small style={{ color: "#666", fontSize: "0.8rem" }}>
+            Başında 0 olacak şekilde 11 hane giriniz.
+          </small>
         </div>
         <button type="submit" className={styles.button}>
           Kaydet

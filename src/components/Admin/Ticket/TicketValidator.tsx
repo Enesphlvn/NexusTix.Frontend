@@ -2,11 +2,11 @@ import { useState } from "react";
 import { checkInTicket } from "../../../api/Ticket/ticketService";
 import { FaCheckCircle, FaQrcode, FaTimesCircle } from "react-icons/fa";
 import styles from "./TicketValidator.module.css";
-import { useAdminEvents } from "../../../hooks/Event/useAdminEvents";
 import { toast } from "react-toastify";
+import { useCheckInEvents } from "../../../hooks/Event/useCheckInEvents";
 
 const TicketValidator = () => {
-  const { events } = useAdminEvents();
+  const { events } = useCheckInEvents();
 
   const [selectedEventId, setSelectedEventId] = useState<number>(0);
   const [qrCode, setQrCode] = useState("");
@@ -70,7 +70,7 @@ const TicketValidator = () => {
             <option value={0}>Listeden bir etkinlik seçin...</option>
             {events.map((evt) => (
               <option key={evt.id} value={evt.id}>
-                {evt.name} ({new Date(evt.date).toLocaleDateString()})
+                {evt.name} ({new Date(evt.date).toLocaleDateString("tr-TR")})
               </option>
             ))}
           </select>
