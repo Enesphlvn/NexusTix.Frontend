@@ -9,3 +9,11 @@ export const getAllEventTypes = async (): Promise<EventTypeResponse[]> => {
 
   return response.data.data;
 };
+
+export const getEventTypesByArtist = async (artistId: number): Promise<EventTypeResponse[]> => {
+  const response = await api.get<ServiceResult<EventTypeResponse[]>>(`/eventtypes/by-artist/${artistId}`);
+
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+  
+  return response.data.data!;
+};

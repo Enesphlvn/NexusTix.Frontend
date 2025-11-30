@@ -46,6 +46,14 @@ export const getArtistWithEvents = async (id: number): Promise<ArtistWithEventsR
   return response.data.data!;
 };
 
+export const getArtistsByEventType = async (eventTypeId: number): Promise<ArtistResponse[]> => {
+  const response = await api.get<ServiceResult<ArtistResponse[]>>(`/artists/by-eventtype/${eventTypeId}`);
+
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+  
+  return response.data.data!;
+};
+
 export const createArtist = async (request: CreateArtistRequest): Promise<ArtistResponse> => {
   const response = await api.post<ServiceResult<ArtistResponse>>("/artists", request);
 
