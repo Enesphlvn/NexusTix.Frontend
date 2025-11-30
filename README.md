@@ -109,3 +109,13 @@ src/
 ├── pages/        # Sayfa bileşenleri
 ├── router/       # Rota yapılandırması
 └── store/        # Auth slice ve Store yapılandırması
+```
+
+
+---
+
+## 📞 İletişim
+
+Geliştirici: **[Enes PEHLİVAN]**
+* GitHub: [github.com/Enesphlvn](https://github.com/Enesphlvn)
+* LinkedIn: [linkedin.com/in/enespehlivan](https://www.linkedin.com/in/enespehlivan/)
