@@ -6,7 +6,9 @@ import { useCities } from "../City/useCities";
 import { useEventTypes } from "../EventType/useEventTypes";
 import { useDistrictsByCity } from "../District/useDistrictsByCity";
 import type { ArtistResponse } from "../../models/Artist/Responses/ArtistResponse";
-import { getAllArtists } from "../../api/Artist/artistService";
+import { getAllArtists, getArtistsByEventType } from "../../api/Artist/artistService";
+import type { EventTypeResponse } from "../../models/EventType/Responses/EventTypeResponse";
+import { getEventTypesByArtist } from "../../api/EventType/eventTypeService";
 
 export const useHomeFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,34 +32,52 @@ export const useHomeFilter = () => {
     [searchParams]
   );
 
-  const [draftFilters, setDraftFilters] =
-    useState<EventFiltersRequest>(activeFilters);
+  const [draftFilters, setDraftFilters] = useState<EventFiltersRequest>(activeFilters);
   const [artists, setArtists] = useState<ArtistResponse[]>([]);
+  const [filteredEventTypes, setFilteredEventTypes] = useState<EventTypeResponse[]>([]);
 
   useEffect(() => {
     setDraftFilters(activeFilters);
   }, [activeFilters]);
 
-  const {
-    events,
-    loading: eventsLoading,
-    error: eventsError,
-  } = useEvents(activeFilters);
+  const { events, loading: eventsLoading, error: eventsError, } = useEvents(activeFilters);
   const { cities, loading: citiesLoading } = useCities();
-  const { eventTypes, loading: eventTypesLoading } = useEventTypes();
+  const { eventTypes: allEventTypes, loading: eventTypesLoading } = useEventTypes();
   const { districts } = useDistrictsByCity(draftFilters.cityId);
 
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const data = await getAllArtists();
-        setArtists(data);
+        if (draftFilters.eventTypeId) {
+          const data = await getArtistsByEventType(draftFilters.eventTypeId);
+          setArtists(data);
+        }else{
+          const data = await getAllArtists();
+          setArtists(data);
+        }
       } catch (err) {
         console.error("Sanatçılar yüklenemedi", err);
+        setArtists([]);
       }
     };
     fetchArtists();
-  }, []);
+  }, [draftFilters.eventTypeId]);
+
+  useEffect(() => {
+    const fetchEventTypes = async () => {
+      try {
+        if (draftFilters.artistId) {
+          const data = await getEventTypesByArtist(draftFilters.artistId);
+          setFilteredEventTypes(data);
+        } else {
+          if (allEventTypes.length > 0) setFilteredEventTypes(allEventTypes);
+        }
+      } catch (err) {
+        console.error("Kategoriler yüklenemedi", err);
+      }
+    };
+    fetchEventTypes();
+  }, [draftFilters.artistId, allEventTypes]);
 
   const isLoading = eventsLoading || citiesLoading || eventTypesLoading;
 
@@ -111,7 +131,7 @@ export const useHomeFilter = () => {
     draftFilters,
     events,
     cities,
-    eventTypes,
+    eventTypes: filteredEventTypes,
     districts,
     artists,
     isLoading,
