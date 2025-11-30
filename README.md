@@ -17,7 +17,7 @@
 |----------------------------|-----------------------------|
 | ![Home](public/screenshots/home.png) | ![Detail](public/screenshots/detail.png) |
 
-| 📊 Admin Dashboard | 🎫 Sanatçı Yönetimi |
+| 📊 Admin Dashboard | 🎤 Sanatçı Yönetimi |
 |--------------------|------------------------|
 | ![Dashboard](public/screenshots/dashboard.png) | ![Tickets](public/screenshots/artistsManagement.png) |
 
