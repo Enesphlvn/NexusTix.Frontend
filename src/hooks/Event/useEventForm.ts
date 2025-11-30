@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   createEvent,
-  getEventById,
+  getEventById, 
   updateEvent,
 } from "../../api/Event/eventService";
 import { toast } from "react-toastify";

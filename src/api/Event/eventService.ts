@@ -59,6 +59,14 @@ export const getAllEventsForAdmin = async (): Promise<EventAdminResponse[]> => {
   return response.data.data!;
 };
 
+export const getEventForAdmin = async (id: number): Promise<EventAdminResponse> => {
+  const response = await api.get<ServiceResult<EventAdminResponse>>(`/events/${id}/admin-edit`);
+  
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
+  
+  return response.data.data!;
+};
+
 export const createEvent = async (
   request: CreateEventRequest
 ): Promise<EventResponse> => {

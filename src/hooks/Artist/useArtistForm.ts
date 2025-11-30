@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   createArtist,
-  getArtist,
+  getArtistForAdmin,
   updateArtist,
 } from "../../api/Artist/artistService";
 import { toast } from "react-toastify";
@@ -26,7 +26,7 @@ export const useArtistForm = () => {
       const loadArtist = async () => {
         try {
           setInitialLoading(true);
-          const data = await getArtist(Number(id));
+          const data = await getArtistForAdmin(Number(id));
 
           setName(data.name);
           setBio(data.bio || "");

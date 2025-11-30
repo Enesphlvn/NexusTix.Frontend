@@ -30,7 +30,7 @@ export const getArtistForAdmin = async (id: number): Promise<ArtistAdminResponse
   return response.data.data!;
 };
 
-export const getArtist = async (id: number): Promise<ArtistResponse> => {
+export const getArtistById = async (id: number): Promise<ArtistResponse> => {
   const response = await api.get<ServiceResult<ArtistResponse>>(`/artists/${id}`);
 
   if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
