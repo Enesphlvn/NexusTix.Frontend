@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   createEvent,
-  getEventById, 
+  getEventForAdmin,
   updateEvent,
 } from "../../api/Event/eventService";
 import { toast } from "react-toastify";
@@ -33,7 +33,7 @@ export const useEventForm = (id?: string) => {
       const loadEvent = async () => {
         try {
           setInitialLoading(true);
-          const event = await getEventById(Number(id));
+          const event = await getEventForAdmin(Number(id));
 
           setName(event.name);
           setDate(new Date(event.date).toISOString().slice(0, 16));
@@ -42,9 +42,7 @@ export const useEventForm = (id?: string) => {
           setCapacity(event.capacity);
           setEventTypeId(event.eventTypeId);
           setVenueId(event.venueId);
-          if (event.artistIds) {
-            setArtistIds(event.artistIds);
-          }
+          if (event.artistIds) { setArtistIds(event.artistIds); }
         } catch (error: any) {
           toast.error("Etkinlik bilgileri yüklenemedi.");
           navigate("/admin/events");

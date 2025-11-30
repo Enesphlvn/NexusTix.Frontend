@@ -12,5 +12,6 @@ export interface EventAdminResponse {
   isActive: boolean;
   created: string;
   updated: string | null;
+  artistIds: number[];
   artistNames: string[];
 }

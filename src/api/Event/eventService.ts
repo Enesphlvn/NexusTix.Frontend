@@ -98,8 +98,7 @@ export const updateEvent = async (
 export const getEventById = async (id: number): Promise<EventResponse> => {
   const response = await api.get<ServiceResult<EventResponse>>(`/events/${id}`);
 
-  if (!response.data.isSuccess)
-    throw new Error(response.data.errorMessages.join(", "));
+  if (!response.data.isSuccess) throw new Error(response.data.errorMessages.join(", "));
 
   return response.data.data!;
 };
